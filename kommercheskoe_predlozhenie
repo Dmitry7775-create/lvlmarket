@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Коммерческое предложение | LVL Market | Внедрение стратегии</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0E17;
+  --bg-card: #111827;
+  --bg-card-hover: #1A2332;
+  --bg-accent: rgba(196, 167, 103, 0.08);
+  --text: #E2E8F0;
+  --text-soft: #94A3B8;
+  --text-dim: #64748B;
+  --gold: #C4A767;
+  --gold-bright: #D4B96A;
+  --gold-dim: rgba(196, 167, 103, 0.15);
+  --blue: #60A5FA;
+  --blue-dim: rgba(96, 165, 250, 0.1);
+  --green: #4ADE80;
+  --green-dim: rgba(74, 222, 128, 0.1);
+  --red: #FB7185;
+  --red-dim: rgba(251, 113, 133, 0.1);
+  --orange: #FBBF24;
+  --orange-dim: rgba(251, 191, 36, 0.1);
+  --purple: #A78BFA;
+  --purple-dim: rgba(167, 139, 250, 0.1);
+  --border: rgba(255,255,255,0.06);
+  --border-gold: rgba(196, 167, 103, 0.2);
+  --r: 10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{font-family:'Nunito Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased}
+
+/* SLIDE */
+.slide{min-height:100vh;display:flex;align-items:center;padding:80px 24px;position:relative;overflow:hidden}
+.slide+.slide{border-top:1px solid var(--border)}
+.slide-inner{max-width:960px;margin:0 auto;width:100%}
+
+/* HERO */
+.hero{justify-content:center;text-align:center}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 30% 80%,rgba(196,167,103,0.06) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 75% 20%,rgba(96,165,250,0.04) 0%,transparent 60%);pointer-events:none}
+.hero .slide-inner{position:relative;z-index:1;animation:rise 1s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+.badge{display:inline-block;font-family:'Fira Code',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid var(--border-gold);padding:7px 18px;border-radius:99px;margin-bottom:36px;background:var(--gold-dim)}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:700;line-height:1.15;margin-bottom:20px}
+h1 .accent{color:var(--gold)}
+.hero-sub{font-size:1.1rem;color:var(--text-soft);max-width:680px;margin:0 auto 44px;font-weight:300;line-height:1.85}
+.hero-meta{display:flex;gap:28px;justify-content:center;flex-wrap:wrap}
+.hero-meta span{font-size:.82rem;color:var(--text-dim);font-family:'Fira Code',monospace}
+
+/* TYPOGRAPHY */
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;margin-bottom:16px;line-height:1.25}
+h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;margin:36px 0 14px;color:var(--text)}
+h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;margin:24px 0 10px;color:var(--gold)}
+.label{font-family:'Fira Code',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block}
+p{margin-bottom:15px;color:var(--text-soft);line-height:1.8}
+strong{color:var(--text);font-weight:600}
+
+/* CARDS */
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:30px;margin-bottom:16px;transition:border-color .3s}
+.card:hover{border-color:var(--border-gold)}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:600;margin-bottom:10px;color:var(--text)}
+.card-text{color:var(--text-soft);font-size:.93rem;line-height:1.7}
+.card-accent{border-left:3px solid var(--gold)}
+.card-blue{border-left:3px solid var(--blue)}
+.card-green{border-left:3px solid var(--green)}
+.card-purple{border-left:3px solid var(--purple)}
+
+/* METRIC CARDS */
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;margin:24px 0}
+.metric{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:24px;text-align:center}
+.metric-value{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.metric-label{font-size:.85rem;color:var(--text-dim)}
+.metric-sub{font-size:.75rem;color:var(--text-dim);margin-top:6px}
+
+/* QUOTE */
+.quote{border-left:3px solid var(--gold);padding:20px 24px;margin:28px 0;background:var(--gold-dim);border-radius:0 var(--r) var(--r) 0}
+.quote p{color:var(--text);margin:0;font-style:italic;font-size:1rem}
+.quote .attr{font-style:normal;font-size:.85rem;color:var(--text-dim);margin-top:8px;display:block}
+
+/* WARNING */
+.warn{border-left:3px solid var(--red);padding:20px 24px;margin:28px 0;background:var(--red-dim);border-radius:0 var(--r) var(--r) 0}
+.warn p{color:var(--text);margin:0}
+.warn .warn-label{font-family:'Fira Code',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px;display:block}
+
+/* SUCCESS */
+.success{border-left:3px solid var(--green);padding:20px 24px;margin:28px 0;background:var(--green-dim);border-radius:0 var(--r) var(--r) 0}
+.success p{color:var(--text);margin:0}
+.success .success-label{font-family:'Fira Code',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:6px;display:block}
+
+/* INFO */
+.info{border-left:3px solid var(--blue);padding:20px 24px;margin:28px 0;background:var(--blue-dim);border-radius:0 var(--r) var(--r) 0}
+.info p{color:var(--text);margin:0}
+.info .info-label{font-family:'Fira Code',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:6px;display:block}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.9rem}
+th{text-align:left;padding:12px 14px;font-family:'Fira Code',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--border-gold);font-weight:500}
+td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text-soft);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.highlight-row{background:var(--gold-dim)}
+
+/* PACKAGE CARDS */
+.pkg{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:36px;margin-bottom:20px;position:relative;overflow:hidden}
+.pkg::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);opacity:.5}
+.pkg.recommended{border-color:var(--border-gold)}
+.pkg.recommended::before{opacity:1;height:4px}
+.pkg-badge{position:absolute;top:14px;right:16px;font-family:'Fira Code',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);background:var(--gold-dim);padding:3px 10px;border-radius:99px}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;margin-bottom:4px}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:6px}
+.pkg-price span{font-size:.9rem;color:var(--text-dim);font-family:'Nunito Sans',sans-serif;font-weight:400}
+.pkg-for{font-size:.88rem;color:var(--text-dim);margin-bottom:18px;font-style:italic}
+.pkg-list{list-style:none;padding:0;margin:0 0 20px}
+.pkg-list li{padding:6px 0 6px 20px;position:relative;font-size:.92rem;color:var(--text-soft);line-height:1.6}
+.pkg-list li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700;font-size:.85rem}
+.pkg-note{font-size:.85rem;color:var(--text-dim);padding-top:14px;border-top:1px solid var(--border)}
+
+/* ROADMAP */
+.rm-month{margin-bottom:40px}
+.rm-badge{display:inline-block;font-family:'Fira Code',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:4px 14px;border-radius:99px;margin-bottom:14px}
+.rm-badge.m1{background:var(--green-dim);color:var(--green)}
+.rm-badge.m2{background:var(--blue-dim);color:var(--blue)}
+.rm-badge.m3{background:var(--gold-dim);color:var(--gold)}
+.rm-badge.m4{background:var(--purple-dim);color:var(--purple)}
+
+/* CHECK LIST */
+.checks{list-style:none;padding:0;margin:20px 0}
+.checks li{padding:8px 0 8px 28px;position:relative;font-size:.93rem;color:var(--text-soft);line-height:1.65}
+.checks li::before{content:'✅';position:absolute;left:0;font-size:.8rem}
+
+/* COMPARISON */
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.comp-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:24px}
+.comp-card.old{border-top:3px solid var(--red)}
+.comp-card.new{border-top:3px solid var(--green)}
+.comp-card .comp-label{font-family:'Fira Code',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;display:block}
+.comp-card.old .comp-label{color:var(--red)}
+.comp-card.new .comp-label{color:var(--green)}
+.comp-card p{font-size:.9rem;color:var(--text-soft);margin-bottom:8px;line-height:1.6}
+.comp-card p:last-child{margin-bottom:0}
+
+/* CHANNEL CARDS */
+.channel-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px;margin:24px 0}
+.channel{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:24px;position:relative}
+.channel-type{font-family:'Fira Code',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:99px;display:inline-block;margin-bottom:12px}
+.channel-type.hot{background:var(--red-dim);color:var(--red)}
+.channel-type.warm{background:var(--orange-dim);color:var(--orange)}
+.channel-type.forming{background:var(--blue-dim);color:var(--blue)}
+.channel-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;margin-bottom:8px}
+.channel-desc{font-size:.85rem;color:var(--text-soft);line-height:1.6;margin-bottom:12px}
+.channel-stats{display:flex;gap:16px;flex-wrap:wrap;padding-top:12px;border-top:1px solid var(--border)}
+.channel-stat{font-size:.8rem}
+.channel-stat span{color:var(--text-dim)}
+.channel-stat strong{color:var(--gold)}
+
+/* BUDGET TABLE */
+.budget-table{overflow-x:auto}
+.budget-table table{min-width:600px}
+.budget-row-total{background:var(--gold-dim);font-weight:600}
+.budget-row-total td{color:var(--text)}
+
+/* SCENARIO CARDS */
+.scenario-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:16px;margin:24px 0}
+.scenario{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:24px;text-align:center}
+.scenario.conservative{border-top:3px solid var(--text-dim)}
+.scenario.realistic{border-top:3px solid var(--blue)}
+.scenario.aggressive{border-top:3px solid var(--green)}
+.scenario-name{font-family:'Fira Code',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.scenario.conservative .scenario-name{color:var(--text-dim)}
+.scenario.realistic .scenario-name{color:var(--blue)}
+.scenario.aggressive .scenario-name{color:var(--green)}
+.scenario-value{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.scenario-label{font-size:.8rem;color:var(--text-dim)}
+.scenario-details{font-size:.75rem;color:var(--text-soft);margin-top:12px;text-align:left}
+
+/* CTA */
+.cta-block{text-align:center;padding:48px 32px;background:var(--bg-card);border:1px solid var(--border-gold);border-radius:var(--r);margin-top:40px}
+.cta-block h3{margin-top:0;font-size:1.4rem;color:var(--text)}
+.cta-block p{color:var(--text-soft);max-width:560px;margin:12px auto}
+
+/* FOOTER */
+.footer{text-align:center;padding:60px 24px;border-top:1px solid var(--border)}
+.footer-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--gold);margin-bottom:6px}
+.footer-text{font-size:.82rem;color:var(--text-dim)}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg, transparent, var(--border-gold), transparent);margin:40px 0}
+
+/* MOBILE */
+@media(max-width:768px){
+  .slide{padding:56px 20px}
+  .comp-grid{grid-template-columns:1fr}
+  .scenario-grid{grid-template-columns:1fr}
+  .channel-grid{grid-template-columns:1fr}
+  .hero-meta{flex-direction:column;gap:10px}
+  .pkg{padding:24px}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  table{font-size:.8rem}
+  th, td{padding:10px 8px}
+}
+@media(max-width:480px){
+  .metrics-grid{grid-template-columns:1fr}
+  .metric-value{font-size:1.8rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ========== SLIDE 1: HERO ========== -->
+<section class="slide hero">
+  <div class="slide-inner">
+    <div class="badge">Коммерческое предложение</div>
+    <h1>Внедрение маркетинговой<br>стратегии <span class="accent">LVL Market</span></h1>
+    <p class="hero-sub">Абонентское кураторство: от документов к результату. 25 документов стратегии готовы. Теперь нужен прораб на маркетинговой стройке — человек, который превратит план в действие и действие в прибыль.</p>
+    <div class="hero-meta">
+      <span>ИП Ильясова Т.А.</span>
+      <span>для LVL Market</span>
+      <span>2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 2: ТЕКУЩЕЕ СОСТОЯНИЕ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Точка А — где мы сейчас</span>
+    <h2>LVL Market сегодня: прибыльный бизнес с системными ограничениями</h2>
+
+    <p>Прежде чем говорить о внедрении, важно зафиксировать реальность. Не абстрактную, а вашу — с конкретными цифрами, ограничениями и возможностями.</p>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-value">35 млн</div>
+        <div class="metric-label">выручка 2025</div>
+        <div class="metric-sub">рост +40% г/г</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">100-200К</div>
+        <div class="metric-label">чистая прибыль/мес</div>
+        <div class="metric-sub">в среднем, в несезон — убытки</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">22</div>
+        <div class="metric-label">сделки в месяц</div>
+        <div class="metric-sub">135К средний чек</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">90%+</div>
+        <div class="metric-label">лидов с Авито</div>
+        <div class="metric-sub">единственный канал</div>
+      </div>
+    </div>
+
+    <p>Бизнес прибыльный. Бизнес растёт. Но за этими цифрами скрывается структурная хрупкость, которая ограничивает дальнейший рост и создаёт риски.</p>
+
+    <h3>Три системные проблемы</h3>
+
+    <div class="card card-accent">
+      <div class="card-title">1. Критическая зависимость от одного канала</div>
+      <p class="card-text">90%+ лидов приходят с Авито. Если Авито изменит условия, поднимет цены или потеряет аудиторию — бизнес остановится. Сайт за 18 месяцев SEO принёс 10 лидов в месяц при затратах 900К. Яндекс.Директ дал 20 лидов по 7 500 руб. Это не диверсификация — это иллюзия диверсификации.</p>
+    </div>
+
+    <div class="card card-accent">
+      <div class="card-title">2. Выраженная сезонность</div>
+      <p class="card-text">5 зимних месяцев дают 20% годовой выручки. 7 летних — 80%. В июле-августе прибыль выше среднего. В декабре-феврале — убытки из-за фиксированных расходов на маркетинг. Зима съедает летний заработок. Ваша реальная задача не «увеличить продажи», а сгладить сезонность.</p>
+    </div>
+
+    <div class="card card-accent">
+      <div class="card-title">3. Вы — единственное узкое горлышко</div>
+      <p class="card-text">100% операций завязаны на вас: расчёты сечения, переговоры, координация доставок, работа с CRM. При 20 лидах в день и 8 часах работы — каждый час занят. Любая стратегия роста упрётся в ваш личный потолок пропускной способности.</p>
+    </div>
+
+    <div class="quote">
+      <p>«Боюсь самого себя, что загорюсь и брошу. С сайтом так было: 18 месяцев платил за SEO, не проверял, не анализировал, отдал на откуп подрядчику и потерял полтора миллиона. Моя главная уязвимость не в системе, а в дисциплине.»</p>
+      <span class="attr">Владислав, собственник LVL Market</span>
+    </div>
+
+    <p>Вот почему нужен не консультант, который «даст рекомендации», а куратор, который обеспечит внедрение. Внешняя дисциплина, которая не даст свернуть с пути.</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 3: СКРЫТЫЕ АКТИВЫ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Деньги на столе</span>
+    <h2>Скрытые активы, которые уже есть, но не монетизируются</h2>
+
+    <p>Хорошая новость: для роста не нужно изобретать велосипед. Нужно активировать то, что уже есть, но лежит мёртвым грузом.</p>
+
+    <div class="card card-green">
+      <div class="card-title">База 10 000 контактов — скрытый актив на 4,3 млн</div>
+      <p class="card-text"><strong>9 500</strong> человек обратились, но не купили. Из них ~6 500 — «живые» контакты (не построили дом, не сменили номер). При конверсии реактивации 10% → 650 тёплых лидов → 65 сделок → <strong>8,8 млн выручки</strong> → <strong>2,4 млн валовой прибыли</strong>.</p>
+      <p class="card-text">Эти деньги уже «заработаны» — контакт привлечён, доверие создано. Осталось конвертировать.</p>
+    </div>
+
+    <div class="card card-green">
+      <div class="card-title">Отсутствие апселлов — +40-60% к среднему чеку</div>
+      <p class="card-text">Сейчас вы продаёте только брус. Но клиенту нужна кровельная система: LVL + OSB + мембрана + утеплитель + крепёж. Комплект стоит на 40-60% дороже, маржа выше. Одна фраза в разговоре: «К брусу обычно берут комплект кровли — хотите, посчитаю?» — и средний чек растёт с 135К до 190-200К.</p>
+      <p class="card-text">При 22 сделках/мес это <strong>+90 тыс. прибыли ежемесячно</strong> при нулевых затратах.</p>
+    </div>
+
+    <div class="card card-green">
+      <div class="card-title">Экспертиза в расчёте сечения — не используется как инструмент</div>
+      <p class="card-text">Вы умеете то, что не умеют 99% конкурентов: рассчитать сечение балки под конкретную нагрузку. Это не просто сервис — это инструмент привлечения проектировщиков и бригадиров. Бесплатный расчёт для их объектов делает вас «героем» в глазах заказчика.</p>
+    </div>
+
+    <div class="card card-green">
+      <div class="card-title">История «60 тыс. → 300 тыс.» — не упакована</div>
+      <p class="card-text">Клиент сэкономил 60 тыс. на «обычной доске» вместо LVL. Через год — переделка кровли за 300 тыс. Это мощнейший продающий кейс, который закрывает возражение «дорого». Но он не упакован, не записан, не используется.</p>
+    </div>
+
+    <div class="success">
+      <span class="success-label">Главный вывод</span>
+      <p>Для выхода на 600К чистыми/мес не нужны революционные изменения. Нужно активировать то, что уже есть: реактивировать базу, внедрить апселлы, упаковать кейсы, масштабировать работающий канал. Это задача не креатива, а дисциплины и системности.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 4: ЦЕНА БЕЗДЕЙСТВИЯ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Экономика промедления</span>
+    <h2>Сколько стоит каждая неделя без внедрения</h2>
+
+    <p>Бездействие — это не «сохранение текущего положения». Бездействие — это упущенная прибыль, которую вы теряете каждый день.</p>
+
+    <table>
+      <thead><tr><th>Упущенная возможность</th><th>Потеря в неделю</th><th>Потеря в месяц</th><th>Потеря за сезон</th></tr></thead>
+      <tbody>
+        <tr><td>Апселлы не внедрены</td><td>22 500 ₽</td><td>90 000 ₽</td><td>630 000 ₽</td></tr>
+        <tr><td>База не реактивирована</td><td>~100 000 ₽*</td><td>~400 000 ₽*</td><td>—</td></tr>
+        <tr><td>Авито не масштабировано</td><td>75 000 ₽</td><td>300 000 ₽</td><td>2 100 000 ₽</td></tr>
+        <tr><td>Проектировщики не охвачены</td><td>25-100 000 ₽</td><td>100-430 000 ₽</td><td>700К-3М ₽</td></tr>
+        <tr class="highlight-row"><td><strong>Итого</strong></td><td><strong>~200-300К</strong></td><td><strong>~890К-1,2М</strong></td><td><strong>~3,4-6,7М</strong></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.8rem;color:var(--text-dim)">* разовый эффект, не ежемесячный</p>
+
+    <div class="warn">
+      <span class="warn-label">Критический момент</span>
+      <p>Строительный сезон начинается в мае-июне. Если начать внедрение сейчас, к сезону все инструменты работают. Если отложить до лета — в сезон внедрять некогда (20 лидов/день съедают всё время). После сезона — зимняя просадка без подушки. Ещё один год по старой модели.</p>
+    </div>
+
+    <h3>История, которую нельзя повторить</h3>
+
+    <table>
+      <thead><tr><th>Подрядчик</th><th>Вложено</th><th>Результат</th></tr></thead>
+      <tbody>
+        <tr><td>SEO-специалист (18 месяцев, остановлен с ноября 2025)</td><td>~900 000 ₽</td><td>10 лидов/мес</td></tr>
+        <tr><td>Разработчик сайта (дважды)</td><td>~300 000 ₽</td><td>Сайт не работает</td></tr>
+        <tr><td>Таргетолог (Яндекс.Директ)</td><td>~150 000 ₽</td><td>20 лидов по 7 500 ₽</td></tr>
+        <tr class="highlight-row"><td><strong>Итого потери</strong></td><td><strong>~1 350 000 ₽</strong></td><td><strong>Результат: ноль</strong></td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Причина была одна:</strong> подрядчики работали без стратегии, без ТЗ, без контроля результата. Вы не могли их проверить, потому что не разбираетесь в маркетинге. Они делали «что-то», а вы платили.</p>
+
+    <p>Теперь ситуация другая. Стратегия есть — 25 документов. ТЗ для каждого подрядчика готовы. Нужен тот, кто выдаст эти ТЗ, проверит исполнение и скорректирует курс.</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 5: ТЕХНОЛОГИЧЕСКОЕ ПРЕВОСХОДСТВО ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Стратегическое преимущество</span>
+    <h2>Технологическое превосходство LVL: почему это не просто «ещё один материал»</h2>
+
+    <p>Конкуренты продают LVL как «брус по цене». Это путь в ценовую войну, где всегда побеждает тот, кто дешевле на 100 рублей. Мы строим позиционирование на смыслах, а не на цене.</p>
+
+    <div class="comp-grid">
+      <div class="comp-card old">
+        <span class="comp-label">Как продают конкуренты</span>
+        <p>«LVL-брус в наличии от X руб./куб»</p>
+        <p>Скан сертификата (нечитаемый)</p>
+        <p>Текст из Википедии о том, что такое LVL</p>
+        <p>Конкуренция по цене</p>
+        <p>Маржа сжимается</p>
+      </div>
+      <div class="comp-card new">
+        <span class="comp-label">Наш подход</span>
+        <p>«LVL-конструкции для пролётов до 36м с расчётом нагрузок за 2 часа»</p>
+        <p>Кейсы с фото, цифрами, историей</p>
+        <p>Сравнение с металлом: экономия 20-30%</p>
+        <p>Конкуренция по экспертизе</p>
+        <p>Маржа растёт</p>
+      </div>
+    </div>
+
+    <h3>Почему LVL выигрывает у металла и бетона</h3>
+
+    <div class="card">
+      <div class="card-title">Для собственника: деньги и время</div>
+      <p class="card-text"><strong>Скорость монтажа:</strong> LVL-каркас собирается на 30-40% быстрее металлоконструкций. Меньше срок стройки = раньше открытие = раньше прибыль.</p>
+      <p class="card-text"><strong>Стоимость фундамента:</strong> LVL легче стали в 5-7 раз. Меньше вес = дешевле фундамент = экономия 15-25% на бетоне.</p>
+      <p class="card-text"><strong>Стоимость владения (LCC):</strong> Металл нужно красить каждые 10 лет, тратить миллионы на огнезащиту сейчас. LVL в разрезе жизненного цикла дешевле на 20-30%.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Для проектировщика: безопасность и нормативная база</div>
+      <p class="card-text"><strong>Регламентация:</strong> Проектирование из LVL в России полностью законно и регламентировано. СП 64.13330.2017 — основной документ для расчётов.</p>
+      <p class="card-text"><strong>Огнестойкость:</strong> R45/R60 — LVL обугливается со скоростью 0,7 мм/мин, сохраняя ядро балки холодным. Это не горение, а предсказуемая деградация.</p>
+      <p class="card-text"><strong>Наш сервис:</strong> Бесплатный расчёт сечения для проектов + «Инженерная папка» с характеристиками LVL, типовыми узлами, расчётными параметрами по СНиП.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Для агрессивных сред: безальтернативное решение</div>
+      <p class="card-text"><strong>Бассейны:</strong> Металл ржавеет от хлора. LVL не гниёт от влаги — 50+ лет службы.</p>
+      <p class="card-text"><strong>Сельхозпостройки:</strong> Металл разрушается от аммиака. LVL устойчив к агрессивным средам.</p>
+      <p class="card-text"><strong>Ангары:</strong> Пролёты до 24 м без промежуточных опор. ЛСТК в 90% случаев дешевле, но в агрессивных средах LVL выигрывает безоговорочно.</p>
+    </div>
+
+    <div class="info">
+      <span class="info-label">Конкурентный анализ</span>
+      <p>Ни один из 6 конкурентов не работает с технологическим превосходством. Все продают «кубометры по цене». Ниша профессионального сервисного поставщика-инженера, который берёт на себя риски по расчётам — абсолютно свободна.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 6: КАНАЛЫ ПРОДАЖ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Многоканальная стратегия</span>
+    <h2>Каналы продаж: от зависимости от Авито к диверсифицированной системе</h2>
+
+    <p>Текущая ситуация: 90%+ лидов с Авито — это не стратегия, это риск. Мы выстраиваем систему из 7+ каналов, каждый из которых вносит измеримый вклад в продажи.</p>
+
+    <h3>Онлайн-каналы</h3>
+
+    <div class="channel-grid">
+      <div class="channel">
+        <span class="channel-type hot">Горячий спрос</span>
+        <div class="channel-name">Авито — основной драйвер</div>
+        <p class="channel-desc">Текущий: 550 лидов/мес → 20 сделок. Потолок: 1000-1200 лидов при бюджете 45-50К. Расширение через смежную семантику: «балки на большой пролёт», «чем перекрыть 7 метров», «материал для ангара».</p>
+        <div class="channel-stats">
+          <div class="channel-stat"><span>ROI:</span> <strong>4000-5000%</strong></div>
+          <div class="channel-stat"><span>Вклад:</span> <strong>60-70% сделок</strong></div>
+        </div>
+      </div>
+
+      <div class="channel">
+        <span class="channel-type forming">Формирующийся</span>
+        <div class="channel-name">YouTube / RuTube — образовательный контент</div>
+        <p class="channel-desc">Рынок «небюджетный» — людям нужно объяснять, что такое LVL. Форматы: расчёт сечения в прямом эфире, обзоры объектов, сравнение LVL vs доска vs металл. Это 65-70% рынка, которые ищут «чем перекрыть 8 метров», но не знают про LVL.</p>
+        <div class="channel-stats">
+          <div class="channel-stat"><span>Тип:</span> <strong>долгосрочный актив</strong></div>
+          <div class="channel-stat"><span>Вклад:</span> <strong>5-10% через 6 мес</strong></div>
+        </div>
+      </div>
+
+      <div class="channel">
+        <span class="channel-type warm">Тёплый</span>
+        <div class="channel-name">Строительные форумы</div>
+        <p class="channel-desc">ForumHouse, RMNT, группы VK/Telegram по самостройщикам. Здесь обитает «тревожный сканер» — человек, который не может определиться. Присутствие эксперта с реальными расчётами = мощный инструмент доверия.</p>
+        <div class="channel-stats">
+          <div class="channel-stat"><span>Затраты:</span> <strong>время</strong></div>
+          <div class="channel-stat"><span>Вклад:</span> <strong>3-5% сделок</strong></div>
+        </div>
+      </div>
+
+      <div class="channel">
+        <span class="channel-type forming">Формирующийся</span>
+        <div class="channel-name">Профессиональные площадки</div>
+        <p class="channel-desc">НОСТРОЙ, Telegram-каналы по проектированию, BIM-сообщества, Архитайм, Archi.ru. Выход на проектировщиков и архитекторов — тех, кто определяет выбор материала на этапе проекта.</p>
+        <div class="channel-stats">
+          <div class="channel-stat"><span>Цикл:</span> <strong>3-12 мес</strong></div>
+          <div class="channel-stat"><span>Вклад:</span> <strong>10-15% через год</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Оффлайн и партнёрские каналы</h3>
+
+    <div class="channel-grid">
+      <div class="channel">
+        <span class="channel-type hot">Горячий</span>
+        <div class="channel-name">Проектировщики — ключевой канал роста</div>
+        <p class="channel-desc">Проектировщик закладывает LVL в проект → клиент приходит с готовой спецификацией → минимум возражений, высокая конверсия (30-50%). 20 лояльных проектировщиков = 20-50 сделок/год с повышенным чеком (200-500К).</p>
+        <div class="channel-stats">
+          <div class="channel-stat"><span>CAC:</span> <strong>~0</strong></div>
+          <div class="channel-stat"><span>Конверсия:</span> <strong>30-50%</strong></div>
+          <div class="channel-stat"><span>Вклад:</span> <strong>+100-430К/мес</strong></div>
+        </div>
+      </div>
+
+      <div class="channel">
+        <span class="channel-type hot">Горячий</span>
+        <div class="channel-name">Строительные бригады — реферальная сеть</div>
+        <p class="channel-desc">Бригадир ведёт 3-10 объектов в год. Один лояльный бригадир = 2-5 сделок/год без затрат на привлечение. 20 лояльных бригадиров = 40-100 сделок/год. Реферальная программа: 3-5% от сделки (3-7К при чеке 100-200К).</p>
+        <div class="channel-stats">
+          <div class="channel-stat"><span>CAC:</span> <strong>~0</strong></div>
+          <div class="channel-stat"><span>Конверсия:</span> <strong>~90%</strong></div>
+          <div class="channel-stat"><span>Вклад:</span> <strong>+5-10 сделок/мес</strong></div>
+        </div>
+      </div>
+
+      <div class="channel">
+        <span class="channel-type warm">Тёплый</span>
+        <div class="channel-name">Строительные выставки</div>
+        <p class="channel-desc">«Деревянный дом» (Москва, весна и осень), MosBuild, «Строительная неделя». Место, где собираются и частники (на этапе планирования), и профессионалы. LVL Market ни разу не участвовал — неиспользованная возможность для B2B-нетворкинга.</p>
+        <div class="channel-stats">
+          <div class="channel-stat"><span>Затраты:</span> <strong>50-150К/выставка</strong></div>
+          <div class="channel-stat"><span>Вклад:</span> <strong>B2B контакты</strong></div>
+        </div>
+      </div>
+
+      <div class="channel">
+        <span class="channel-type hot">Горячий</span>
+        <div class="channel-name">Визиты на склад — конверсия 100%</div>
+        <p class="channel-desc">5 складов: 2 в Москве, 2 в Питере, завод в Торжке. Каждый клиент, который приехал на склад — купил. Используется пассивно. Потенциал: видео-экскурсия для «сомневающихся», активное приглашение.</p>
+        <div class="channel-stats">
+          <div class="channel-stat"><span>Конверсия:</span> <strong>100%</strong></div>
+          <div class="channel-stat"><span>Затраты:</span> <strong>0</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Скрытые каналы (ЛВР — лица, влияющие на решение)</h3>
+
+    <div class="card card-purple">
+      <div class="card-title">Смежные поисковые запросы — 65-70% рынка</div>
+      <p class="card-text">Люди, которые ищут «чем перекрыть 8 метров» или «прогнулись балки что делать», не знают про LVL. Ни один из 6 конкурентов не работает с этим спросом. Кто первый начнёт — получит непропорциональную долю рынка.</p>
+      <p class="card-text"><strong>Инструменты:</strong> расширение семантики на Авито + видео-контент + присутствие на форумах.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>Целевое распределение каналов через 12 месяцев</h3>
+
+    <table>
+      <thead><tr><th>Канал</th><th>Текущая доля</th><th>Целевая доля</th><th>Сделки/мес</th></tr></thead>
+      <tbody>
+        <tr><td>Авито (прямой спрос)</td><td>90%</td><td>50-55%</td><td>25-30</td></tr>
+        <tr><td>Авито (смежная семантика)</td><td>0%</td><td>10-15%</td><td>5-8</td></tr>
+        <tr><td>Проектировщики</td><td>~2%</td><td>10-15%</td><td>5-8</td></tr>
+        <tr><td>Бригадиры (рефералы)</td><td>~5%</td><td>10%</td><td>5-6</td></tr>
+        <tr><td>Реактивация базы</td><td>0%</td><td>5-10%</td><td>3-5</td></tr>
+        <tr><td>YouTube / контент</td><td>0%</td><td>3-5%</td><td>2-3</td></tr>
+        <tr><td>Прочее (форумы, выставки)</td><td>~3%</td><td>5%</td><td>2-3</td></tr>
+        <tr class="highlight-row"><td><strong>Итого</strong></td><td><strong>22</strong></td><td><strong>100%</strong></td><td><strong>47-63</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ========== SLIDE 7: БЮДЖЕТ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Финансовое планирование</span>
+    <h2>Маркетинговый бюджет: новые каналы с фокусом на ROI</h2>
+
+    <p>Текущий маркетинговый бюджет: ~65К/мес (Авито оплачивается отдельно подрядчику). SEO остановлено с ноября 2025 (экономия 50К/мес). Новый бюджет — дополнительные инвестиции в каналы роста.</p>
+
+    <h3>Структура нового бюджета (без учёта Авито)</h3>
+
+    <div class="budget-table">
+      <table>
+        <thead><tr><th>Канал</th><th>Текущий</th><th>Новый</th><th>Прогноз ROI</th><th>Примечание</th></tr></thead>
+        <tbody>
+          <tr><td>Подрядчик по Авито</td><td>50 000</td><td>50 000</td><td>—</td><td>Уже оплачивается, вне бюджета</td></tr>
+          <tr><td>SEO сайта</td><td>50 000</td><td>0</td><td>—</td><td>Остановлено с ноября 2025</td></tr>
+          <tr><td>Реферальная программа</td><td>0</td><td>15 000</td><td>~1000%</td><td>3-5% от сделок бригадиров</td></tr>
+          <tr><td>Проектировщики (комиссии)</td><td>0</td><td>25 000</td><td>~800%</td><td>5-10% от сделок</td></tr>
+          <tr><td>Контент (видео, кейсы)</td><td>0</td><td>20 000</td><td>Долгосрочный</td><td>Монтаж, дизайн</td></tr>
+          <tr><td>Email-маркетинг</td><td>0</td><td>5 000</td><td>~2000%</td><td>Сервис рассылок</td></tr>
+          <tr><td>Выставки (амортизация)</td><td>0</td><td>10 000</td><td>B2B контакты</td><td>2 выставки/год</td></tr>
+          <tr><td>Резерв</td><td>0</td><td>25 000</td><td>—</td><td>Тесты новых каналов</td></tr>
+          <tr class="budget-row-total"><td><strong>Итого новых расходов</strong></td><td><strong>0</strong></td><td><strong>100 000</strong></td><td><strong>—</strong></td><td><strong>Инвестиция в рост</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info">
+      <span class="info-label">Экономика изменений</span>
+      <p><strong>Экономия (уже получена):</strong> остановка SEO с ноября 2025 = −50К/мес = −600К/год бесполезных расходов.<br>
+      <strong>Новая инвестиция:</strong> +100К/мес на каналы с доказанным ROI.<br>
+      <strong>Чистое увеличение:</strong> +50К/мес к текущим расходам (с учётом экономии на SEO).</p>
+    </div>
+
+    <h3>Прогноз ROMI по сценариям</h3>
+
+    <div class="scenario-grid">
+      <div class="scenario conservative">
+        <div class="scenario-name">Консервативный</div>
+        <div class="scenario-value">+150К</div>
+        <div class="scenario-label">доп. прибыли/мес</div>
+        <div class="scenario-details">
+          • Апселлы +60К<br>
+          • Рефералы +3 сделки<br>
+          • Реактивация базы +30К<br>
+          • ROMI: 150%
+        </div>
+      </div>
+      <div class="scenario realistic">
+        <div class="scenario-name">Реалистичный</div>
+        <div class="scenario-value">+300К</div>
+        <div class="scenario-label">доп. прибыли/мес</div>
+        <div class="scenario-details">
+          • Апселлы +90К<br>
+          • Рефералы +5 сделок<br>
+          • Проектировщики +3 сделки<br>
+          • База +50К<br>
+          • ROMI: 300%
+        </div>
+      </div>
+      <div class="scenario aggressive">
+        <div class="scenario-name">Агрессивный</div>
+        <div class="scenario-value">+500К</div>
+        <div class="scenario-label">доп. прибыли/мес</div>
+        <div class="scenario-details">
+          • Апселлы +120К<br>
+          • Рефералы +8 сделок<br>
+          • Проектировщики +6 сделок<br>
+          • База +100К<br>
+          • ROMI: 500%
+        </div>
+      </div>
+    </div>
+
+    <div class="success">
+      <span class="success-label">Ключевой вывод</span>
+      <p>Даже при консервативном сценарии дополнительная прибыль (+150К) покрывает инвестицию (+100К) в 1,5 раза. При реалистичном — в 3 раза. Это не затраты, а инвестиция с измеримой отдачей.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 8: ПОТЕНЦИАЛ БАЗЫ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Скрытый актив</span>
+    <h2>Потенциал базы 10 000 контактов: 4,3 млн прибыли за 2 месяца</h2>
+
+    <p>В вашей CRM лежит актив, который уже «оплачен» (контакты привлечены), но не конвертирован. Это самый дешёвый и быстрый способ получить дополнительную выручку.</p>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-value">10 000</div>
+        <div class="metric-label">контактов в CRM</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">~6 500</div>
+        <div class="metric-label">«живых» контактов</div>
+        <div class="metric-sub">30% мёртвые (дом построен)</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">~650</div>
+        <div class="metric-label">тёплых лидов</div>
+        <div class="metric-sub">при конверсии 10%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">~65</div>
+        <div class="metric-label">сделок</div>
+        <div class="metric-sub">при конверсии 10%</div>
+      </div>
+    </div>
+
+    <h3>Финансовый расчёт</h3>
+
+    <table>
+      <thead><tr><th>Параметр</th><th>Значение</th><th>Источник</th></tr></thead>
+      <tbody>
+        <tr><td>Всего контактов</td><td>10 000</td><td>AmoCRM</td></tr>
+        <tr><td>Купившие клиенты</td><td>~450</td><td>За 1,5-2 года</td></tr>
+        <tr><td>Не купившие</td><td>~9 500</td><td>—</td></tr>
+        <tr><td>«Живые» (актуальные)</td><td>~6 500 (65%)</td><td>Консервативная оценка</td></tr>
+        <tr><td>Откликнутся на реактивацию</td><td>~650 (10%)</td><td>Бенчмарк B2B</td></tr>
+        <tr><td>Конвертируются в сделку</td><td>~65 (10%)</td><td>Они уже вас знают</td></tr>
+        <tr class="highlight-row"><td><strong>Выручка</strong></td><td><strong>~8,8 млн</strong></td><td>65 × 135К средний чек</td></tr>
+        <tr class="highlight-row"><td><strong>Валовая прибыль</strong></td><td><strong>~2,4 млн</strong></td><td>Маржа 27%</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Стратегия реактивации</h3>
+
+    <div class="card card-blue">
+      <div class="card-title">Сегментация базы</div>
+      <p class="card-text"><strong>Сегмент А:</strong> Обратились 3-6 месяцев назад, сказали «стройка позже» — самые горячие, стройка может идти прямо сейчас.</p>
+      <p class="card-text"><strong>Сегмент Б:</strong> Обратились 6-12 месяцев назад — стройка в разгаре, LVL может быть актуален на этапе кровли.</p>
+      <p class="card-text"><strong>Сегмент В:</strong> Обратились 12+ месяцев назад — часть достроила, часть отложила. Конверсия ниже, но объём больше.</p>
+    </div>
+
+    <div class="card card-blue">
+      <div class="card-title">Email-воронка: 10 писем за 14 дней</div>
+      <p class="card-text">Готовая серия писем из стратегии BIG ATTENTION. Каждое письмо — конкретный триггер: «Как дела со стройкой?», «История про 60К → 300К», «Бронирование на сезон», «Последний шанс по текущей цене».</p>
+      <p class="card-text"><strong>Инструменты:</strong> Unisender / SendPulse / GetResponse — 3-5К/мес за сервис рассылок.</p>
+    </div>
+
+    <div class="card card-blue">
+      <div class="card-title">Раннее бронирование (зимние продажи)</div>
+      <p class="card-text">Предложение для базы + новых лидов: «Закажите LVL сейчас — зафиксируем текущую цену (завод повышает каждый год на 5-7%). Предоплата 30% — бронируем на складе до начала вашей стройки».</p>
+      <p class="card-text"><strong>Эффект:</strong> 210-420К зимней прибыли + предоплаты 1-2 млн закрывают кассовый разрыв.</p>
+    </div>
+
+    <div class="success">
+      <span class="success-label">Роль в сглаживании сезонности</span>
+      <p>Реактивация базы + раннее бронирование — ключевой инструмент для зимних месяцев. Вместо нулевой прибыли в декабре-феврале: 200-400К/мес от работы с базой. Это решает главную структурную проблему бизнеса.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 9: ПОТЕНЦИАЛ ПРОЕКТИРОВЩИКОВ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Канал масштабирования</span>
+    <h2>Потенциал проектировщиков: +100-430К/мес и решение проблемы сезонности</h2>
+
+    <p>Проектировщики — это не просто «ещё один канал». Это стратегический актив, который работает годами после одного контакта. Один проектировщик, включивший LVL в свою «библиотеку решений», генерирует клиентов на протяжении всей карьеры.</p>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-value">5-15К</div>
+        <div class="metric-label">проектных бюро в РФ</div>
+        <div class="metric-sub">ИЖС + малоэтажка</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">30-50%</div>
+        <div class="metric-label">конверсия по спецификации</div>
+        <div class="metric-sub">vs 3,7% холодный лид</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">200-500К</div>
+        <div class="metric-label">средний чек</div>
+        <div class="metric-sub">LVL на весь проект</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">Круглый год</div>
+        <div class="metric-label">сезонность</div>
+        <div class="metric-sub">проектирование не зависит от погоды</div>
+      </div>
+    </div>
+
+    <h3>Модель взаимодействия</h3>
+
+    <div class="card">
+      <div class="card-title">Этап 1: Первые 20 контактов (месяц 1-2)</div>
+      <p class="card-text">Составить список проектировщиков из CRM (среди 10 000 контактов наверняка есть десятки) + поиск в профессиональных сообществах (Telegram, НОСТРОЙ).</p>
+      <p class="card-text"><strong>Предложение:</strong> «Бесплатный расчёт сечения для ваших проектов + гарантия поставки заказчику в срок + ваш логотип в паспорте расчёта (ко-брендинг)».</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Этап 2: «Инженерная папка» (месяц 2-3)</div>
+      <p class="card-text">Подготовить документ для проектировщика с характеристиками LVL, типовыми узлами, расчётными параметрами по СНиП/СП 64.13330.2017. Этого инструмента сейчас нет ни у кого на рынке.</p>
+      <p class="card-text"><strong>Эффект:</strong> Проектировщику проще заложить LVL, если у него под рукой готовые расчётные таблицы и узлы.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Этап 3: Партнёрская программа (месяц 3-6)</div>
+      <p class="card-text">Формализовать условия: 5-10% от сделки за приведённого клиента (10-30К при чеке 200-300К). Или: скидка заказчику от проектировщика (укрепляет отношения проектировщик-заказчик).</p>
+      <p class="card-text"><strong>Важно:</strong> Некоторые проектировщики принципиально не берут откаты — для них сервис (бесплатный расчёт) важнее денег.</p>
+    </div>
+
+    <h3>Финансовый прогноз</h3>
+
+    <table>
+      <thead><tr><th>Сценарий</th><th>Проектировщиков</th><th>Сделок/мес</th><th>Выручка/мес</th><th>Прибыль/мес</th></tr></thead>
+      <tbody>
+        <tr><td>Минимальный</td><td>10 активных</td><td>4</td><td>800К-1,2М</td><td>+100К</td></tr>
+        <tr><td>Средний</td><td>20 активных</td><td>8</td><td>1,6-2,4М</td><td>+250К</td></tr>
+        <tr class="highlight-row"><td><strong>Целевой (12 мес)</strong></td><td><strong>30 активных</strong></td><td><strong>12</strong></td><td><strong>2,4-3,6М</strong></td><td><strong>+430К</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="info">
+      <span class="info-label">Конкурентный ландшафт</span>
+      <p>Завод Ультралам имеет технических специалистов и теоретически может работать с проектировщиками напрямую. Но на практике не занимается этим системно. Остальные 5 конкурентов — тем более. Поле полностью открыто.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 10: ПОТЕНЦИАЛ АВИТО ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Основной драйвер</span>
+    <h2>Потенциал Авито: от 550 до 1000+ лидов и расширение через семантику</h2>
+
+    <p>Авито — доказанный канал с ROI 4000-5000%. Но текущее использование далеко от потолка. Есть два рычага роста: увеличение бюджета и расширение семантики.</p>
+
+    <h3>Текущее состояние</h3>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-value">15К</div>
+        <div class="metric-label">бюджет/мес</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">~550</div>
+        <div class="metric-label">лидов/мес</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">~20</div>
+        <div class="metric-label">сделок/мес</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">~800₽</div>
+        <div class="metric-label">CAC</div>
+      </div>
+    </div>
+
+    <h3>Рычаг 1: Увеличение бюджета</h3>
+
+    <div class="card">
+      <p class="card-text">При увеличении бюджета с 15К до 30К — рост не линейный, а +40-50%. То есть ~770-825 лидов → ~28-30 сделок.</p>
+      <p class="card-text">При бюджете 45-50К — потолок ~1000-1200 лидов. Дальше убывающая отдача: рынок маленький (~1000 запросов в Вордстате по прямым ключам).</p>
+      <p class="card-text"><strong>Рекомендация:</strong> Увеличить до 45К/мес поэтапно: сначала до 30К, оценить эффект, затем до 45К.</p>
+    </div>
+
+    <h3>Рычаг 2: Расширение семантики</h3>
+
+    <div class="card card-green">
+      <div class="card-title">Смежные запросы — 65-70% рынка не охвачено</div>
+      <p class="card-text">Сейчас объявления только на прямые запросы: «LVL брус купить», «LVL балка». Но большинство людей не знают про LVL — они ищут решение проблемы:</p>
+      <p class="card-text">• «Балки перекрытий деревянные»<br>
+      • «Коньковый брус 7-13 метров»<br>
+      • «Чем перекрыть 8 метров»<br>
+      • «Материал для ангара без колонн»<br>
+      • «Деревянные балки на большой пролёт»<br>
+      • «Прогнулись балки что делать»</p>
+      <p class="card-text"><strong>Эффект:</strong> Ещё +20-30% лидов без увеличения бюджета, только за счёт новых объявлений.</p>
+    </div>
+
+    <h3>Нишевые объявления для B2B</h3>
+
+    <div class="card">
+      <div class="card-title">Отдельные объявления под каждый подсегмент</div>
+      <p class="card-text"><strong>Ангары:</strong> «LVL для ангаров — пролёты до 24 м без промежуточных опор»</p>
+      <p class="card-text"><strong>Бассейны:</strong> «LVL для бассейнов — не гниёт от влаги, 50+ лет»</p>
+      <p class="card-text"><strong>Сельхоз:</strong> «LVL для сельхозпостроек — устойчив к аммиаку»</p>
+      <p class="card-text"><strong>Модульные дома:</strong> «Каркас дома из LVL — готовый конструктор в 20-футовом контейнере»</p>
+      <p class="card-text">Это бесплатно, кроме времени на написание. Каждое объявление — ловушка для своего сегмента.</p>
+    </div>
+
+    <h3>Прогноз роста через Авито</h3>
+
+    <table>
+      <thead><tr><th>Сценарий</th><th>Бюджет</th><th>Лиды</th><th>Сделки</th><th>Доп. прибыль</th></tr></thead>
+      <tbody>
+        <tr><td>Текущий</td><td>15К</td><td>550</td><td>20</td><td>—</td></tr>
+        <tr><td>Бюджет ×2</td><td>30К</td><td>770-825</td><td>28-30</td><td>+200-250К</td></tr>
+        <tr><td>+ Семантика</td><td>45К</td><td>1000-1100</td><td>36-40</td><td>+400-500К</td></tr>
+        <tr class="highlight-row"><td><strong>Потолок</strong></td><td><strong>50К</strong></td><td><strong>1100-1200</strong></td><td><strong>40-44</strong></td><td><strong>+500-600К</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="warn">
+      <span class="warn-label">Важное ограничение</span>
+      <p>40+ сделок в месяц при текущей структуре (один человек на всё) — физически невозможно обработать качественно. Масштабирование Авито до потолка требует найма помощника на первичную квалификацию.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 11: СУТЬ ПРЕДЛОЖЕНИЯ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Суть предложения</span>
+    <h2>Я ваш прораб на маркетинговой стройке</h2>
+
+    <p>Проект дома (25 документов) готов. Теперь нужен человек, который контролирует стройку — не строит сам, а обеспечивает, чтобы каждый подрядчик работал по чертежу, а не «как видит».</p>
+
+    <h3>Что делаю я (куратор)</h3>
+
+    <div class="card">
+      <p class="card-text"><strong>Еженедельный созвон (30-60 мин)</strong> по чёткой структуре: результаты за неделю, что пошло не так, задачи на следующую неделю (чек-лист из 3-5 пунктов), ваши вопросы.</p>
+      <p class="card-text"><strong>ТЗ для подрядчиков</strong> на основе готовых документов. Беру нужный документ из 25, превращаю в конкретное задание: «сделай вот это, проверь по этим критериям».</p>
+      <p class="card-text"><strong>Приёмка работы подрядчиков.</strong> Сайт сделан по нашей структуре или «по-своему»? Объявление содержит наши хуки или подрядчик написал «как обычно»?</p>
+      <p class="card-text"><strong>Доступ ко мне в чат</strong> для оперативных вопросов между созвонами.</p>
+      <p class="card-text"><strong>Корректировка стратегии</strong> по результатам. Что работает — масштабируем. Что нет — меняем.</p>
+    </div>
+
+    <h3>Чего я НЕ делаю</h3>
+
+    <p>Не верстаю сайт, не настраиваю Авито, не монтирую видео, не делаю рассылки руками. Я штурман, не гребец. Именно поэтому могу объективно контролировать качество — нет конфликта интересов.</p>
+
+    <h3>Кто делает работу руками: три варианта</h3>
+
+    <div class="card">
+      <p class="card-text"><strong>Вариант А.</strong> Ваши текущие подрядчики. Подрядчик по Авито уже есть. Раньше он работал «как видит», теперь по конкретному ТЗ из наших документов.</p>
+      <p class="card-text"><strong>Вариант Б.</strong> Я рекомендую проверенных подрядчиков под каждую задачу. Вы заключаете с ними договоры и платите напрямую (не через меня).</p>
+      <p class="card-text"><strong>Вариант В.</strong> Комбинация. Часть задач вы делаете сами (реактивация базы по шаблонам, звонки проектировщикам по скрипту). Часть отдаёте подрядчикам.</p>
+    </div>
+
+    <h3>Расходы помимо кураторства: полная картина</h3>
+
+    <table>
+      <thead><tr><th>Расход</th><th>Сумма</th><th>Примечание</th></tr></thead>
+      <tbody>
+        <tr><td>Подрядчик по Авито</td><td>50 тыс./мес</td><td>Уже платите. Не новый расход</td></tr>
+        <tr><td>Помощник на телефон</td><td>15-25 тыс./мес</td><td>Нужен в любом случае, с куратором или без</td></tr>
+        <tr><td>Увеличение бюджета Авито</td><td>+30 тыс./мес</td><td>ROI ~2000%</td></tr>
+        <tr><td>Разработчик сайта</td><td>30-50 тыс.</td><td>Разово, не ежемесячно</td></tr>
+        <tr><td>Дизайнер PDF-шаблона</td><td>3-5 тыс.</td><td>Разово</td></tr>
+        <tr><td>Монтаж видео (2 ролика)</td><td>6-10 тыс.</td><td>Разово</td></tr>
+        <tr><td>Сервис email-рассылок</td><td>3-5 тыс./мес</td><td>Unisender / SendPulse</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Новый постоянный расход:</strong> абонентская плата + увеличение бюджета Авито + email-сервис. Всё остальное либо уже оплачивается, либо разовое, либо нужно независимо от кураторства.</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 12: ПАКЕТЫ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Три пакета на выбор</span>
+    <h2>Выберите уровень вовлечённости</h2>
+
+    <!-- НАВИГАТОР -->
+    <div class="pkg">
+      <div class="pkg-name">Навигатор</div>
+      <div class="pkg-price">100 000 <span>руб./мес</span></div>
+      <p class="pkg-for">Если готовы сами координировать подрядчиков, а от куратора нужен контроль дисциплины и проверка результатов</p>
+      <ul class="pkg-list">
+        <li>1 созвон в неделю (30 мин): задачи, контроль, вопросы</li>
+        <li>Еженедельный чек-лист из 3-5 задач</li>
+        <li>Приёмка ключевых результатов (проверка соответствия стратегии)</li>
+        <li>Доступ в чат для вопросов (ответ в течение дня)</li>
+        <li>Ежемесячный отчёт: метрики, выводы, план</li>
+      </ul>
+      <p class="pkg-note"><strong>Честное предупреждение:</strong> подходит, если вы готовы тратить 3-4 часа/нед на координацию подрядчиков. Если нет, выбирайте «Штурман».</p>
+      <p class="pkg-note"><strong>Окупаемость:</strong> только апселл «комплект кровли» (+90 тыс./мес при нулевых затратах) практически покрывает стоимость пакета. Остальное сверху.</p>
+    </div>
+
+    <!-- ШТУРМАН -->
+    <div class="pkg recommended">
+      <div class="pkg-badge">Рекомендуемый</div>
+      <div class="pkg-name">Штурман</div>
+      <div class="pkg-price">150 000 <span>руб./мес</span></div>
+      <p class="pkg-for">Если хотите заниматься только продажами и расчётами, а всю координацию маркетинга отдать мне</p>
+      <ul class="pkg-list">
+        <li>1 созвон в неделю (45-60 мин): разбор, стратегия</li>
+        <li>Еженедельный чек-лист с задачами</li>
+        <li>Формирование ТЗ для подрядчиков из готовых документов</li>
+        <li>Подбор и рекомендация подрядчиков под каждую задачу</li>
+        <li>Приёмка работы подрядчиков: каждый результат проверяется</li>
+        <li>Координация реактивации базы и email-воронок</li>
+        <li>Доступ в чат с приоритетным ответом</li>
+        <li>Ежемесячный отчёт с аналитикой и корректировкой</li>
+      </ul>
+      <p class="pkg-note"><strong>Окупаемость:</strong> апселлы (+90 тыс.) + масштабирование Авито (+300 тыс. при затратах +30 тыс.) = +390 тыс./мес. При вложении 150 тыс. чистый плюс 240 тыс./мес уже в первый месяц.</p>
+    </div>
+
+    <!-- ПАРТНЁР -->
+    <div class="pkg">
+      <div class="pkg-name">Партнёр</div>
+      <div class="pkg-price">200 000 <span>руб./мес</span></div>
+      <p class="pkg-for">Если хотите не только внедрить стратегию, но и развивать бизнес: B2B, проектировщики, модульные дома, новые рынки</p>
+      <ul class="pkg-list">
+        <li>Всё из пакета «Штурман»</li>
+        <li>2 созвона в неделю (операционный + стратегический)</li>
+        <li>Проработка направления «модульные дома из LVL» (чек 300 тыс. - 2+ млн)</li>
+        <li>Стратегия выхода на B2B: ангары, бассейны, сельхоз (круглогодичный спрос)</li>
+        <li>Построение партнёрской сети с проектировщиками (первые 20-30 контактов)</li>
+        <li>Найм и обучение помощника на первичную квалификацию</li>
+        <li>Ежемесячные стратегические сессии по развитию бизнеса</li>
+      </ul>
+      <p class="pkg-note"><strong>Окупаемость:</strong> всё из «Штурмана» + проектировщики (+100-430 тыс./мес через 3-6 мес) + B2B-сделки (один ангар = 150-500 тыс. прибыли). Кратный рост + решение проблемы сезонности.</p>
+    </div>
+
+    <p style="text-align:center;color:var(--text-dim);font-size:.88rem;margin-top:12px">Оплата помесячная. Без долгосрочных обязательств. Не устраивает: останавливаете в любой момент.</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 13: ГАРАНТИЯ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Снятие риска</span>
+    <h2>Как не повторить историю с SEO</h2>
+
+    <p>Вы потратили 1,35 млн на подрядчиков без результата. Любое новое предложение вы оцениваете через эту призму. Поэтому три конкретных вещи:</p>
+
+    <div class="card">
+      <div class="card-title">Помесячная оплата без обязательств</div>
+      <p class="card-text">Не устраивает после первого месяца? Просто не продляете. Без штрафов, без объяснений. Никаких контрактов на полгода.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Конкретные результаты первого месяца</div>
+      <p class="card-text">Вот что вы получите по итогам 4 недель (это чек-лист, за который я отвечаю):</p>
+      <ul class="checks">
+        <li>Минимум 4 объявления на Авито обновлены по хукам из BIG ATTENTION</li>
+        <li>Добавлены объявления на смежные запросы (балки, пролёты, коньки)</li>
+        <li>PDF-шаблон Паспорта Конструктивной Надёжности создан и используется</li>
+        <li>Апселл «комплект кровли» внедрён, вы предлагаете каждому клиенту</li>
+        <li>Скрипт первого ответа изменён (с цены на задачу)</li>
+        <li>Первая волна реактивации базы запущена (сегмент А — 500 контактов)</li>
+        <li>Запущена реферальная программа для бригадиров</li>
+      </ul>
+      <p class="card-text"><strong>Если хотя бы один пункт не выполнен по моей вине, второй месяц бесплатно.</strong></p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Принципиальная разница с SEO-шником</div>
+      <p class="card-text">SEO-шник делал «что-то», вы не могли проверить. 18 месяцев, результат ноль. Со мной: каждую неделю чек-лист, каждую неделю созвон, каждый месяц отчёт с цифрами. Вы видите, что происходит. Повторение истории с SEO физически невозможно.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 14: ДОРОЖНАЯ КАРТА ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Дорожная карта</span>
+    <h2>Что конкретно произойдёт: 12 недель внедрения</h2>
+
+    <div class="rm-month">
+      <span class="rm-badge m1">Месяц 1: быстрые победы</span>
+      <table>
+        <thead><tr><th>Неделя</th><th>Что делаем</th><th>Результат</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Внедряем апселл. Обновляем 4 главных объявления на Авито по хукам.</td><td>Средний чек растёт на 40-60%. Объявления выделяются на фоне конкурентов.</td></tr>
+          <tr><td>2</td><td>5 объявлений на смежные запросы. Новый скрипт первого ответа. Увеличиваем бюджет до 30К.</td><td>Лиды от людей, которые не знали про LVL. +30-40% охвата.</td></tr>
+          <tr><td>3</td><td>ТЗ дизайнеру на PDF Паспорта. Запуск первой волны реактивации (сегмент А — 500 контактов).</td><td>Через неделю готовый Паспорт. Первые отклики из базы.</td></tr>
+          <tr><td>4</td><td>Итоги месяца: лиды, расчёты, сделки, средний чек, отклики из базы.</td><td>Конкретные цифры: что изменилось. Корректировка плана.</td></tr>
+        </tbody>
+      </table>
+      <div class="success" style="margin-top:16px">
+        <span class="success-label">Финансовый эффект месяца 1</span>
+        <p>Апселлы: +90К/мес. Реактивация: первые 5-10 сделок. <strong>Итого: +150К+ к прибыли.</strong></p>
+      </div>
+    </div>
+
+    <div class="rm-month">
+      <span class="rm-badge m2">Месяц 2: масштабирование</span>
+      <table>
+        <thead><tr><th>Неделя</th><th>Что делаем</th><th>Результат</th></tr></thead>
+        <tbody>
+          <tr><td>5</td><td>Съёмка первого видео (сценарий от меня). Реактивация сегмента Б (1000 контактов).</td><td>Контент для YouTube и Авито. Расширение воронки базы.</td></tr>
+          <tr><td>6</td><td>Упаковка кейса «60 тыс. → 300 тыс.». Запуск реферальной программы для бригадиров.</td><td>Мощнейший продающий аргумент. Первые рефералы.</td></tr>
+          <tr><td>7</td><td>Выход на первых 10 проектировщиков. Подготовка «Инженерной папки».</td><td>Начало работы с ключевым каналом роста.</td></tr>
+          <tr><td>8</td><td>Итоги месяца. Съёмка второго видео. Увеличение бюджета Авито до 45К.</td><td>Два готовых ролика. Авито на 80% от потолка.</td></tr>
+        </tbody>
+      </table>
+      <div class="success" style="margin-top:16px">
+        <span class="success-label">Финансовый эффект месяца 2</span>
+        <p>Всё из месяца 1 + рефералы: +50-75К. Реактивация (накопительный): +150-200К. <strong>Итого: +250-350К к прибыли.</strong></p>
+      </div>
+    </div>
+
+    <div class="rm-month">
+      <span class="rm-badge m3">Месяц 3: системные изменения</span>
+      <table>
+        <thead><tr><th>Неделя</th><th>Что делаем</th><th>Результат</th></tr></thead>
+        <tbody>
+          <tr><td>9</td><td>ТЗ на переделку сайта разработчику. Поиск кандидатов на помощника.</td><td>Сайт по готовой структуре (не «как видит» разработчик).</td></tr>
+          <tr><td>10</td><td>Собеседования помощников. Расширение сети проектировщиков до 20.</td><td>Подготовка к делегированию первичной квалификации.</td></tr>
+          <tr><td>11</td><td>Обучение помощника. Реактивация сегмента В (2000+ контактов).</td><td>Помощник выходит на линию. Полная проработка базы.</td></tr>
+          <tr><td>12</td><td>Итоги квартала. Стратегическая сессия. План на следующие 3 месяца.</td><td>Вы высвобождаете 2-3 часа/день. Система работает.</td></tr>
+        </tbody>
+      </table>
+      <div class="success" style="margin-top:16px">
+        <span class="success-label">Финансовый эффект месяца 3</span>
+        <p>Всё из месяцев 1-2. Помощник: +53-100К (больше сделок при том же времени). Проектировщики: первые 2-4 сделки. <strong>Итого: +450-550К к прибыли.</strong></p>
+      </div>
+    </div>
+
+    <div class="rm-month">
+      <span class="rm-badge m4">Месяцы 4-6: выход на целевые показатели</span>
+      <p>Авито на потолке (1000+ лидов). Помощник обрабатывает 80% простых запросов. 20+ активных проектировщиков генерируют 5-10 сделок/мес. Реферальная сеть бригадиров даёт +5-8 сделок/мес. Сайт работает и приносит 10-15% лидов. Сезонность сглажена: зимний доход — минимум 300К/мес вместо нуля.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 15: ФИНАНСОВЫЙ ЭФФЕКТ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Финансовый эффект</span>
+    <h2>Сколько это реально может дать: сводная таблица</h2>
+
+    <table>
+      <thead><tr><th>Действие</th><th>Доп. прибыль/мес</th><th>Когда</th><th>Затраты</th><th>Примечание</th></tr></thead>
+      <tbody>
+        <tr><td>Апселл «комплект кровли»</td><td><strong>+90 тыс.</strong></td><td>С 1-й недели</td><td>0</td><td>Одна фраза в разговоре</td></tr>
+        <tr><td>Реактивация базы</td><td><strong>~2,4 млн</strong></td><td>Через 2-8 недель</td><td>5К/мес</td><td>Разовый эффект</td></tr>
+        <tr><td>Рефералы (бригадиры)</td><td><strong>+50-150 тыс.</strong></td><td>Через 1-2 мес</td><td>3-5% от сделок</td><td>CAC ~0</td></tr>
+        <tr><td>Проектировщики</td><td><strong>+100-430 тыс.</strong></td><td>Через 3-6 мес</td><td>5-10% комиссии</td><td>Долгосрочный канал</td></tr>
+        <tr><td>Помощник</td><td><strong>+53-350 тыс.</strong></td><td>Через 1-2 мес</td><td>15-25К/мес</td><td>Больше сделок, меньше времени</td></tr>
+        <tr><td>Видео-контент</td><td><strong>+63-250 тыс.</strong></td><td>Через 3-6 мес</td><td>10-20К разово</td><td>Долгосрочный актив</td></tr>
+        <tr class="highlight-row"><td><strong>Итого (после запуска)</strong></td><td><strong>+400-700К/мес</strong></td><td><strong>3-6 мес</strong></td><td><strong>~100К/мес</strong></td><td><strong>ROMI 400-700%</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="quote">
+      <p>Только апселлы (+90 тыс.) дают почти стоимость пакета «Навигатор». Реактивация базы (~2,4 млн) — разовый бонус, который покрывает год работы. Всё остальное — долгосрочный рост.</p>
+    </div>
+
+    <h3>Целевые метрики к декабрю 2026</h3>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-value">600К+</div>
+        <div class="metric-label">чистая прибыль/мес</div>
+        <div class="metric-sub">стабильно, включая зиму</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">50-60</div>
+        <div class="metric-label">сделок/мес</div>
+        <div class="metric-sub">vs 22 сейчас</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">180-200К</div>
+        <div class="metric-label">средний чек</div>
+        <div class="metric-sub">за счёт апселлов</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">30%+</div>
+        <div class="metric-label">не с Авито</div>
+        <div class="metric-sub">диверсификация</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 16: ПОЧЕМУ СЕЙЧАС ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Почему именно сейчас</span>
+    <h2>Два факта, которые делают это решение срочным</h2>
+
+    <div class="card">
+      <div class="card-title">Сезонность: окно подготовки закрывается</div>
+      <p class="card-text">Строительный сезон начинается в мае-июне. Если начать внедрение сейчас, к сезону все инструменты работают: обновлённые объявления, Паспорт, увеличенный бюджет Авито, запущенная реактивация, обученный помощник, первые проектировщики в сети. Вы входите в лучшие месяцы года с полным арсеналом.</p>
+      <p class="card-text">Если отложить до лета, в сезон внедрять некогда (20 лидов/день съедают всё время). После сезона: зимняя просадка без подушки. Ещё один год по старой модели. Ещё 1,35 млн упущенной прибыли.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Конкуренты спят. Но не вечно.</div>
+      <p class="card-text">Ни один из шести поставщиков LVL не занимается маркетингом системно. Все продают «брус по цене». Никто не работает с проектировщиками. Никто не использует смежную семантику. Никто не упаковывает кейсы.</p>
+      <p class="card-text">Окно открыто. Но достаточно одному конкуренту начать, и преимущество первого хода будет потеряно. Особенно если это будет Брус 3-7 или Инкома с их закупочными ценами.</p>
+    </div>
+
+    <div class="warn">
+      <span class="warn-label">Математика промедления</span>
+      <p>Каждая неделя без внедрения: 90 000 руб. упущенной прибыли только от апселлов. Каждый месяц: 300 000+ от масштабирования Авито. За сезон: 3,4-6,7 млн. Эти деньги не «потенциальные» — они реальные, просто уходят мимо вашего кармана.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 17: СРАВНЕНИЕ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Наглядно</span>
+    <h2>Как было и как будет</h2>
+
+    <div class="comp-grid">
+      <div class="comp-card old">
+        <span class="comp-label">Как было</span>
+        <p>Платили SEO-шнику 18 мес без контроля. Потеряли 900 тыс.</p>
+        <p>Сайт переделывали дважды за 300 тыс. Не работает.</p>
+        <p>10 000 контактов лежат в CRM мёртвым грузом.</p>
+        <p>Объявления как у всех: «LVL-брус, цена от...»</p>
+        <p>90% лидов с одного канала — полная зависимость.</p>
+        <p>Зима = нулевая прибыль. Сезонность не решена.</p>
+        <p>«Боюсь, что загорюсь и брошу.»</p>
+      </div>
+      <div class="comp-card new">
+        <span class="comp-label">Как будет</span>
+        <p>Подрядчик работает по готовому ТЗ, результат проверяется каждую неделю.</p>
+        <p>Сайт делается один раз по готовой структуре, каждый блок проверяется.</p>
+        <p>Контакты реактивируются по шаблонам. ~4,3 млн выручки.</p>
+        <p>Хуки из «Элитного Отряда». Выделяетесь среди 6 конкурентов.</p>
+        <p>7+ каналов: Авито + проектировщики + бригадиры + контент + база.</p>
+        <p>Раннее бронирование + B2B = зимний доход 300К+ вместо нуля.</p>
+        <p>Внешний контролёр, который не даёт свернуть с пути.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 18: CTA ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Следующий шаг</span>
+    <h2>Документы готовы. Стратегия есть. Осталось начать.</h2>
+
+    <p>25 документов. 9 этапов глубинной проработки. Позиционирование «Метод Открытого Расчёта». 81 заголовок для Авито. 10 готовых текстов. Email-воронка на 10 писем. Структура сайта. Скрипты продаж. Пошаговый план внедрения.</p>
+
+    <p>Всё это — не абстрактная «стратегия». Это конкретные инструменты, готовые к использованию. Нужен только тот, кто будет следить за их внедрением и корректировать курс.</p>
+
+    <p>Напишите мне или позвоните. Обсудим, какой пакет подходит. Это займёт 15-20 минут.</p>
+
+    <p>После этого: подписываем договор и стартуем. Первый созвон на этой же неделе. Первый чек-лист в тот же день. Первые результаты (апселлы + обновлённые объявления) в первую неделю.</p>
+
+    <div class="cta-block">
+      <h3>Одно действие, чтобы начать</h3>
+      <p>Напишите мне в Telegram или позвоните. Скажите, какой пакет вам ближе (или что хотите обсудить детали). Я отвечу в течение часа.</p>
+      <p style="margin-top:20px;color:var(--text-dim);font-size:.88rem">Каждая неделя без внедрения: 90 000 руб. упущенной прибыли только от апселлов. + 75 000 от Авито. + упущенные сделки из базы. План расписан. Осталось начать.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-name">Дмитрий Ильясов</div>
+  <div class="footer-text">ИП Ильясова Т.А. | Кураторство внедрения маркетинговой стратегии</div>
+</footer>
+
+</body>
+</html>
