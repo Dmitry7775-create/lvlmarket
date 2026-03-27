@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Финальный отчёт — LVL Market | Маркетинговая стратегия</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-dark: #0B0F1A;
+  --bg-section: #101828;
+  --bg-card: #162032;
+  --bg-accent-card: #1B2A42;
+  --text-primary: #E8ECF4;
+  --text-secondary: #94A3B8;
+  --text-dim: #64748B;
+  --accent-gold: #D4A853;
+  --accent-gold-dim: rgba(212, 168, 83, 0.15);
+  --accent-blue: #3B82F6;
+  --accent-blue-dim: rgba(59, 130, 246, 0.12);
+  --accent-green: #34D399;
+  --accent-green-dim: rgba(52, 211, 153, 0.12);
+  --accent-red: #F87171;
+  --accent-red-dim: rgba(248, 113, 113, 0.12);
+  --accent-orange: #FB923C;
+  --accent-orange-dim: rgba(251, 146, 60, 0.12);
+  --border: rgba(255,255,255,0.06);
+  --border-accent: rgba(212, 168, 83, 0.25);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--bg-dark); }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-dark);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 60px 24px; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 20% 80%, rgba(212,168,83,0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 20%, rgba(59,130,246,0.06) 0%, transparent 60%); pointer-events: none; }
+.hero-content { max-width: 800px; text-align: center; position: relative; z-index: 1; animation: fadeUp 1s ease-out; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.hero-badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-gold); border: 1px solid var(--border-accent); padding: 8px 20px; border-radius: 100px; margin-bottom: 40px; background: var(--accent-gold-dim); }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
+.hero-title em { font-style: normal; color: var(--accent-gold); }
+.hero-subtitle { font-size: 1.15rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 48px; font-weight: 300; line-height: 1.8; }
+.hero-meta { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; }
+.hero-meta-item { font-size: 0.85rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+.hero-meta-item span { color: var(--text-secondary); }
+
+/* LAYOUT */
+.container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+section { padding: 80px 0; position: relative; }
+section + section { border-top: 1px solid var(--border); }
+
+/* SECTION HEADERS */
+.section-number { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 12px; display: block; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; margin-bottom: 20px; line-height: 1.3; }
+.section-lead { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 48px; max-width: 720px; line-height: 1.8; font-weight: 300; }
+
+/* TEXT */
+h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; margin: 40px 0 16px; color: var(--text-primary); }
+p { margin-bottom: 16px; color: var(--text-secondary); line-height: 1.8; }
+strong { color: var(--text-primary); font-weight: 600; }
+
+/* CARDS */
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; margin-bottom: 20px; transition: border-color 0.3s; }
+.card:hover { border-color: var(--border-accent); }
+.card-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 12px; display: block; }
+.card-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 12px; color: var(--text-primary); }
+.card-text { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+
+/* TABLE */
+.comparison-table { width: 100%; border-collapse: collapse; margin: 24px 0 40px; font-size: 0.9rem; }
+.comparison-table th { text-align: left; padding: 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); border-bottom: 1px solid var(--border-accent); font-weight: 500; }
+.comparison-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+.comparison-table tr:last-child td { border-bottom: none; }
+.tag-contract { display: inline-block; font-size: 10px; font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; padding: 3px 10px; border-radius: 100px; background: var(--accent-blue-dim); color: var(--accent-blue); text-transform: uppercase; }
+.tag-bonus { display: inline-block; font-size: 10px; font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; padding: 3px 10px; border-radius: 100px; background: var(--accent-gold-dim); color: var(--accent-gold); text-transform: uppercase; }
+
+/* STATS */
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 32px 0; }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px; text-align: center; }
+.stat-number { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--accent-gold); line-height: 1; margin-bottom: 8px; }
+.stat-label { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; font-family: 'JetBrains Mono', monospace; }
+
+/* INSIGHT */
+.insight-block { border-left: 3px solid var(--accent-gold); padding: 24px 28px; margin: 32px 0; background: var(--accent-gold-dim); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.insight-block p { color: var(--text-primary); margin-bottom: 0; font-size: 1rem; }
+.insight-block .insight-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 8px; display: block; }
+
+.warning-block { border-left: 3px solid var(--accent-orange); padding: 24px 28px; margin: 32px 0; background: var(--accent-orange-dim); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.warning-block p { color: var(--text-primary); margin-bottom: 0; font-size: 1rem; }
+.warning-block .warning-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-orange); margin-bottom: 8px; display: block; }
+
+/* GRID */
+.fw-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin: 32px 0; }
+.fw-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px; position: relative; overflow: hidden; }
+.fw-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent-gold); opacity: 0.6; }
+.fw-card-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: rgba(212,168,83,0.15); position: absolute; top: 12px; right: 16px; line-height: 1; }
+.fw-card-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 8px; }
+.fw-card-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+
+/* STEPS */
+.step-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 32px; margin-bottom: 16px; }
+.step-block .step-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.step-block .step-num { flex-shrink: 0; width: 36px; height: 36px; background: var(--accent-gold-dim); border: 1px solid var(--border-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 700; color: var(--accent-gold); font-size: 0.95rem; }
+.step-block h4 { font-family: 'Source Sans 3', sans-serif; font-weight: 600; color: var(--text-primary); font-size: 1rem; }
+.step-block .step-what { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 12px; }
+.step-block .step-how { background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); padding: 16px 20px; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
+.step-block .step-how-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 8px; display: block; }
+
+/* DOC TABLE */
+.doc-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.9rem; }
+.doc-table th { text-align: left; padding: 12px 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); border-bottom: 1px solid var(--border-accent); font-weight: 500; }
+.doc-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+.doc-table tr:last-child td { border-bottom: none; }
+
+/* ROADMAP */
+.roadmap-phase { margin-bottom: 48px; }
+.roadmap-label { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 14px; border-radius: 100px; margin-bottom: 16px; }
+.roadmap-label--now { background: var(--accent-green-dim); color: var(--accent-green); }
+.roadmap-label--month { background: var(--accent-blue-dim); color: var(--accent-blue); }
+.roadmap-label--winter { background: var(--accent-gold-dim); color: var(--accent-gold); }
+
+/* FOOTER */
+.footer { text-align: center; padding: 80px 24px; border-top: 1px solid var(--border); }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 12px; }
+.footer-text { font-size: 0.85rem; color: var(--text-dim); }
+
+.divider { width: 60px; height: 1px; background: var(--accent-gold); opacity: 0.4; margin: 48px 0; }
+
+@media (max-width: 640px) {
+  .hero-meta { flex-direction: column; gap: 12px; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .fw-grid { grid-template-columns: 1fr; }
+  .card, .step-block { padding: 24px; }
+  section { padding: 56px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Финальный отчёт • v2.0</div>
+    <h1 class="hero-title">Маркетинговая стратегия<br><em>LVL Market</em></h1>
+    <p class="hero-subtitle">Консалтинговый проект по разработке маркетинговой стратегии для бизнеса в сфере производства и продаж LVL-бруса, модульного строительства и проектирования</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">Договор <span>№ 28/01/26</span></div>
+      <div class="hero-meta-item">Исполнитель <span>ИП Ильясова Т.А.</span></div>
+      <div class="hero-meta-item">Заказчик <span>ИП Пенькова Е.В.</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- 1. ВВЕДЕНИЕ -->
+<section>
+  <div class="container">
+    <span class="section-number">01 — Введение</span>
+    <h2 class="section-title">О проекте и его целях</h2>
+    <p class="section-lead">Проект направлен на достижение конкретной финансовой цели: выход на 600 000 руб. чистого дохода в месяц к декабрю 2026 года с дальнейшим ростом до 1,5 млн руб./мес к концу 2027 года.</p>
+
+    <p><strong>LVL Market</strong> — компания с 14-летней историей в сфере продаж LVL-бруса (клеёная конструкционная древесина производства Ультралам). Текущие показатели: выручка 35 млн руб./год, рост 40% год к году, ~260 сделок/год, 5 складов в Москве и Санкт-Петербурге. Бизнес управляется одним человеком, основной канал продаж — Авито (85%+ трафика).</p>
+
+    <p><strong>Текущее положение — честно.</strong> По собственной оценке заказчика, чистый доход составляет <strong>100–200 тыс./мес в среднем</strong>, с убытками в несезон (ноябрь–март). При детальном расчёте в ходе проекта установлено: чистая прибыль за 2025 год — примерно 4,5–5 млн, то есть <strong>370–420 тыс./мес в среднем</strong>. Расхождение объясняется тем, что собственник не ведёт помесячный учёт прибыли, а субъективное ощущение занижено из-за зимних убытков. Реальность: летом доход достигает 600–1 000 тыс./мес, зимой — 0–100 тыс. или убыток. Разрыв до цели (600 тыс./мес стабильно) — примерно ×1,5 от текущего среднего. Главная задача — не столько «больше продаж летом», сколько <strong>сгладить сезонность и перестать терять деньги зимой</strong>.</p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-number">370–420</div>
+        <div class="stat-label">Тыс./мес сейчас (среднее)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">600</div>
+        <div class="stat-label">Тыс./мес цель (стабильно)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">×1,5</div>
+        <div class="stat-label">Нужный рост прибыли</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">0–100</div>
+        <div class="stat-label">Тыс./мес зимой (проблема)</div>
+      </div>
+    </div>
+
+    <div class="insight-block">
+      <span class="insight-label">Главное открытие проекта</span>
+      <p>Все шесть поставщиков LVL на рынке продают один и тот же брус с одного завода. Конкурировать ценой невозможно. Единственное, что отличает LVL Market — бесплатный инженерный расчёт сечения с документом на руки. Ни один конкурент этого не делает. Конверсия после расчёта — ~80%. Именно эта экспертиза стала основой всей стратегии: вы продаёте не кубометры, а надёжную крышу на 25 лет.</p>
+    </div>
+
+    <div class="warning-block">
+      <span class="warning-label">Рыночный риск: ситуация с заводом</span>
+      <p>По данным 2026 года, ООО «СТОД» (завод Ультралам, Торжок) находится в процедуре банкротства. Объявлена реализация 100% акций АО «Новоторжский ЛПК». Это создаёт неопределённость в поставках, но одновременно — возможность для тех, кто имеет прямые отношения с заводом и доступ к нескольким складам (как LVL Market). Рекомендация: отслеживать ситуацию и при необходимости диверсифицировать поставщиков.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. ПРОВЕДЁННЫЕ РАБОТЫ -->
+<section>
+  <div class="container">
+    <span class="section-number">02 — Проведённые работы</span>
+    <h2 class="section-title">Что было сделано</h2>
+    <p class="section-lead">Объём выполненных работ значительно превысил условия договора. Вместо базового набора из анализа и рекомендаций заказчик получил полноценную маркетинговую «операционную систему».</p>
+
+    <h3>Работы по договору (8 пунктов из п.2.1)</h3>
+    <table class="comparison-table">
+      <thead><tr><th>Пункт договора</th><th>Что выполнено</th></tr></thead>
+      <tbody>
+        <tr><td>Анализ целевой аудитории</td><td>Глубинный анализ с выделением 8 подсегментов (4 B2C + 4 B2B), JTBD-анализ, пятислойный анализ мотивации, психографические портреты, детальные «золотые сегменты»</td></tr>
+        <tr><td>Анализ сайта и слабых сторон</td><td>Полный аудит + готовый план переделки сайта с текстами для 4 сегментных лендингов</td></tr>
+        <tr><td>Формулировка офферов и позиционирования</td><td>Концепция «Метод Открытого Расчёта», 5 брендированных характеристик, архитектурный план оффера с показателем ценности 20,25</td></tr>
+        <tr><td>Подбор каналов привлечения</td><td>Стратегический анализ рынка (9 млрд руб.), экономическое моделирование 7 вариантов роста с прогнозами прибыли</td></tr>
+        <tr><td>Смысловая структура сайта</td><td>Полная структура: главная + 4 лендинга + каталог + «О продукте» + «О компании» — с полными текстами</td></tr>
+        <tr><td>Прототип продающего лендинга</td><td>4 готовых лендинга с текстами, CTA, блоками доверия — для каждого сегмента ЦА</td></tr>
+        <tr><td>План повышения конверсии</td><td>Система реактивации базы (10 000 контактов), скрипты продаж (3 формата), план апселлов</td></tr>
+        <tr><td>Сценарий e-mail/мессенджер-воронки</td><td>Email-машина: 10 писем, 2 сегмента, 14 дней + шаблоны для WhatsApp и Авито-чата</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Дополнительные работы сверх договора: система 9 BIG-фреймворков</h3>
+    <p>Помимо пунктов договора, была выполнена масштабная работа по созданию целостной маркетинговой системы. Она состоит из 9 последовательных этапов (фреймворков), где каждый следующий строится на результатах предыдущего — как этажи здания. Пропустить этаж нельзя, иначе конструкция не будет стоять.</p>
+    <p>Ниже — описание каждого этапа <strong>простым языком</strong>: зачем он нужен, что мы в нём делали и какой конкретный результат получили для LVL Market.</p>
+
+    <div class="card">
+      <span class="card-label">Этап 1 из 9 — сверх договора</span>
+      <div class="card-title">BIG MOTIVATION — Почему люди вообще покупают</div>
+      <p class="card-text"><strong>Зачем это нужно простыми словами:</strong> Прежде чем что-то продавать, нужно понять, что происходит на рынке в целом. Не «какие у клиентов боли» (это поверхностный уровень), а какие глобальные процессы заставляют людей искать именно ваш продукт. Это как понять течение реки, прежде чем ставить сети.</p>
+      <p class="card-text"><strong>Что мы сделали для LVL Market:</strong> Выявили, что на строительном рынке произошёл сдвиг — «инфляция ответственности». Стоимость строительных ошибок выросла в разы (дом стоит 5–10 млн, каждая ошибка — катастрофа), а рынок поставщиков остался в логике 2010-х годов: «вот цена, берите или нет». Никто не помогает клиенту принять правильное решение. Именно этот разрыв и создаёт возможность для LVL Market.</p>
+      <p class="card-text"><strong>Результат:</strong> Пятислойный анализ мотивации — документ, который объясняет, почему клиенты ведут себя именно так, и на какие «кнопки» нажимать в маркетинге.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Этап 2 из 9 — сверх договора</span>
+      <div class="card-title">BIG EMOTION — Что чувствует клиент в момент выбора</div>
+      <p class="card-text"><strong>Зачем это нужно простыми словами:</strong> Люди покупают не головой, а эмоциями. Если вы не понимаете, что именно чувствует ваш клиент в момент, когда он вам звонит — вы будете говорить «не о том». Это как врач, который лечит не ту болезнь.</p>
+      <p class="card-text"><strong>Что мы сделали для LVL Market:</strong> Определили, что главная эмоция клиента — тревога уровня 9 из 10. Не просто «волнуюсь», а «я принимаю решение, от которого зависит безопасность моей семьи, и не могу проверить, правильное ли оно». Это экзистенциальный страх. И клиент готов платить за его снятие. Также спроектировали путь от этой тревоги к «осознанной уверенности» — через 6 конкретных шагов.</p>
+      <p class="card-text"><strong>Результат:</strong> Паспорт эмоционального состояния + библиотека из 21 речевого модуля (готовые фразы для разговоров, объявлений, писем, которые попадают точно в эмоцию клиента).</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Этап 3 из 9 — сверх договора</span>
+      <div class="card-title">BIG IDEA — Главная идея, которая отличает вас от всех</div>
+      <p class="card-text"><strong>Зачем это нужно простыми словами:</strong> Когда продукт у всех одинаковый (тот же брус с того же завода), нужна идея, которая заставит клиента сказать: «А, вот эти — другие!» Без такой идеи вы обречены конкурировать ценой — а у вас цена выше, чем у конкурентов.</p>
+      <p class="card-text"><strong>Что мы сделали для LVL Market:</strong> Нашли и сформулировали концепцию «Метод Открытого Расчёта». Суть: вы не просто продаёте брус — вы единственный, кто показывает клиенту инженерный расчёт и говорит: «Проверьте у любого инженера. Мне нечего прятать.» Это создаёт новую рыночную категорию — «Продажа с открытым расчётом» — где у вас нет конкурентов.</p>
+      <p class="card-text"><strong>Результат:</strong> Концепция позиционирования, которая отвечает на главный вопрос: «Почему вы, а не Брус 3-7?»</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Этап 4 из 9 — сверх договора</span>
+      <div class="card-title">BIG DOMINO — Один аргумент, который убирает все возражения</div>
+      <p class="card-text"><strong>Зачем это нужно простыми словами:</strong> Клиенты возражают: «дорого», «подумаю», «а вдруг кинете», «бригадир говорит — доска пойдёт». Можно бороться с каждым возражением по отдельности — и проиграть. А можно найти одно убеждение, которое «опрокидывает» все остальные разом — как первая костяшка домино.</p>
+      <p class="card-text"><strong>Что мы сделали для LVL Market:</strong> Нашли это убеждение: «Пока вам дают мнения вместо расчёта — уверенность невозможна.» Когда клиент принимает эту мысль, все возражения теряют смысл: вопрос «дорого» превращается в «а что, можно получить расчёт бесплатно?». Также создали карту уничтожения возражений и лестницу убеждений из 7 ступеней — готовый контент-план.</p>
+      <p class="card-text"><strong>Результат:</strong> «Библия Домино» — полная система аргументации, готовая к использованию в разговорах, объявлениях и на сайте.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Этап 5 из 9 — сверх договора</span>
+      <div class="card-title">BIG REASON — Предложение, от которого сложно отказаться</div>
+      <p class="card-text"><strong>Зачем это нужно простыми словами:</strong> Мало придумать идею — нужно упаковать её в конкретное предложение (оффер). Не «LVL-брус в наличии», а предложение, после которого клиент думает: «Было бы глупо этим не воспользоваться.» Это как разница между «у нас есть пицца» и «горячая пицца за 30 минут или бесплатно».</p>
+      <p class="card-text"><strong>Что мы сделали для LVL Market:</strong> Сконструировали полный оффер по формуле ценности. Показатель ценности — 20,25 (это очень высокий балл). Написали готовые скрипты для трёх ситуаций: текст объявления на Авито, сценарий телефонного разговора, шаблон сообщения в WhatsApp после расчёта. Всё готово к копированию и использованию.</p>
+      <p class="card-text"><strong>Результат:</strong> Архитектурный план оффера — мастер-документ с готовыми текстами для каждой точки контакта с клиентом.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Этап 6 из 9 — сверх договора</span>
+      <div class="card-title">BIG IMAGE — Как говорить о продукте, чтобы его хотели купить</div>
+      <p class="card-text"><strong>Зачем это нужно простыми словами:</strong> «Бесплатный расчёт сечения за 15 минут» — это описание функции. Клиент читает и думает: «Ну ок, посчитают.» А нужно, чтобы он почувствовал, как его жизнь изменится после этого расчёта. Чтобы представил: вечер, телефон, бригадир ждёт ответ — и вот приходит PDF с расчётом, и он впервые за две недели выдыхает.</p>
+      <p class="card-text"><strong>Что мы сделали для LVL Market:</strong> Каждую из 5 характеристик оффера раскрыли по 4 измерениям: что клиент сможет делать, что будет чувствовать, кем станет, во что будет верить. Дали каждой характеристике запоминающееся имя: «Протокол Трёх Цифр», «Паспорт Конструктивной Надёжности», «Индекс Надёжности», «Система Брус Завтра», «Гарантия Проверьте Сами». Написали 49 готовых формулировок и 5 кинематографичных сценариев.</p>
+      <p class="card-text"><strong>Результат:</strong> Система восприятия ценности — «книга ценности», из которой можно брать готовые фразы для любых маркетинговых материалов.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Этап 7 из 9 — сверх договора</span>
+      <div class="card-title">BIG ATTENTION — Заголовки и фразы, которые останавливают прокрутку</div>
+      <p class="card-text"><strong>Зачем это нужно простыми словами:</strong> Клиент листает Авито — мимо пролетают десятки одинаковых объявлений «LVL-брус, цена от...». Ваше объявление должно заставить его остановиться и прочитать. Для этого нужен заголовок, который «цепляет» — попадает в его боль, любопытство или страх. Не наугад, а точно в цель.</p>
+      <p class="card-text"><strong>Что мы сделали для LVL Market:</strong> Создали 81 готовый заголовок и хук: для Авито, WhatsApp, email, Telegram. Каждый протестирован по специальной шкале. Лучшие 14 выделены в «Золотой Фонд», а топ-5 — в «Элитный Отряд». Пример: «Три продавца бруса — три разных сечения. Кто прав? Бесплатный расчёт за 15 минут.»</p>
+      <p class="card-text"><strong>Результат:</strong> Инженерный пакет захвата внимания — 81 готовая к использованию формулировка. Открываете, выбираете, вставляете в объявление.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Этап 8 из 9 — сверх договора</span>
+      <div class="card-title">BIG BRICKS — Готовые тексты, которые ведут клиента к покупке</div>
+      <p class="card-text"><strong>Зачем это нужно простыми словами:</strong> Один пост или одно письмо редко приводит к покупке. Нужна серия текстов, где каждый следующий продолжает предыдущий — как серия серий, где зритель не может остановиться. Первый текст — «это про меня!», второй — «а я об этом не думал», третий — «а что, так можно?», и так до «куда платить?».</p>
+      <p class="card-text"><strong>Что мы сделали для LVL Market:</strong> Создали 10 готовых текстов («кирпичей»), выстроенных в убеждающую последовательность. Каждый выполняет свою задачу: первый вызывает узнавание, второй снимает вину, третий разрушает мифы, четвёртый показывает метод, пятый — кейс, и так далее до оффера. Тексты готовы к публикации в Telegram, на Авито, в email-рассылке или на YouTube.</p>
+      <p class="card-text"><strong>Результат:</strong> Конструктор убеждающих последовательностей — 10 текстов + 4 карты сборки + руководства по адаптации под разные каналы.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Этап 9 из 9 — сверх договора</span>
+      <div class="card-title">BIG PICTURE — Проверка: всё ли стыкуется друг с другом</div>
+      <p class="card-text"><strong>Зачем это нужно простыми словами:</strong> Когда у вас 8 документов, 49 формулировок, 81 заголовок и 10 текстов — легко запутаться и начать говорить клиенту противоречивые вещи. Один текст обещает одно, объявление на Авито — другое, а в разговоре вы говорите третье. Клиент чувствует фальшь и уходит. BIG PICTURE — это финальная проверка: всё ли работает как единая система.</p>
+      <p class="card-text"><strong>Что мы сделали для LVL Market:</strong> Собрали все 8 предыдущих этапов в единый Манифест — «конституцию» маркетинга. Провели стресс-тест по 23 контрольным точкам. Проверили: не противоречит ли позиционирование офферу? Совпадает ли язык формулировок с тем, как реально говорят клиенты? Подтверждают ли доказательства обещания? Все разрывы найдены и устранены.</p>
+      <p class="card-text"><strong>Результат:</strong> Манифест проекта с сертификатом целостности + стратегическая карта внедрения с приоритетами по неделям.</p>
+    </div>
+
+    <div class="insight-block">
+      <span class="insight-label">Почему это важно — одной фразой</span>
+      <p>Девять фреймворков — это не девять отдельных документов. Это одна система, где результат каждого этапа становится «сырьём» для следующего, а последний этап проверяет целостность всей цепочки. Именно поэтому все элементы маркетинга LVL Market (объявления, скрипты, тексты, сайт) говорят одним голосом и усиливают друг друга, а не противоречат.</p>
+    </div>
+
+    <p>Также разработаны: стратегический анализ рынка и сегментов, JTBD-анализ, стратегия технологического превосходства в B2B, система реактивации клиентской базы (7 блоков), позиционирование и логика работы в нише LVL-бруса, полный сбор фактуры бизнеса (120+ вопросов).</p>
+
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-number">9</div><div class="stat-label">Фреймворков</div></div>
+      <div class="stat-card"><div class="stat-number">25+</div><div class="stat-label">Документов</div></div>
+      <div class="stat-card"><div class="stat-number">81</div><div class="stat-label">Готовых хуков</div></div>
+      <div class="stat-card"><div class="stat-number">49</div><div class="stat-label">Формулировок</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. ВЫВОДЫ -->
+<section>
+  <div class="container">
+    <span class="section-number">03 — Ключевые выводы</span>
+    <h2 class="section-title">Что мы выяснили о бизнесе</h2>
+    <p class="section-lead">Шесть главных открытий, которые определяют всю стратегию. Каждое подкреплено конкретными цифрами из анализа.</p>
+
+    <div class="card">
+      <span class="card-label">Вывод №1</span>
+      <div class="card-title">Расчёт сечения — ваш настоящий продукт, а не брус</div>
+      <p class="card-text">Брус у всех одинаковый. Ваш расчёт — единственное, что отличает вас от конкурентов. Конверсия после расчёта — ~80%. За 800+ расчётов — ноль опровержений инженерами. Это не «бонусная услуга», это ваше конкурентное преимущество, вокруг которого нужно строить весь маркетинг.</p>
+      <p class="card-text"><strong>Что это значит для вас на практике:</strong> когда клиент спрашивает «сколько стоит?» — не называйте цену первым. Сначала спросите «какой у вас пролёт?» и сделайте расчёт. После этого вопрос цены уходит на второй план.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Вывод №2</span>
+      <div class="card-title">Клиент платит за избавление от страха, а не за кубометры</div>
+      <p class="card-text">98% клиентов приходят в момент паники: бригада стоит (это 12–15 тыс./день), три продавца дали три разных сечения, и никто не показал расчёт. Они боятся ошибиться в конструктиве, потому что переделка — это 300–400 тыс. руб. и год нервов.</p>
+      <p class="card-text"><strong>Что это значит:</strong> ваши объявления на Авито должны говорить не «LVL-брус в наличии», а «Три продавца — три разных сечения. Кто прав? Бесплатный расчёт за 15 минут — покажите любому инженеру».</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Вывод №3</span>
+      <div class="card-title">10 000 контактов в CRM — это деньги, которые лежат на столе</div>
+      <p class="card-text">~9 500 людей обращались, но не купили. Многие из них строят прямо сейчас. Консервативный прогноз: если написать 4 750 из них — откликнутся ~712, из них ~214 будут актуальны, ~32 купят. Это 4,3 млн руб. выручки при нулевых затратах.</p>
+      <p class="card-text"><strong>Что это значит:</strong> начните с простого: напишите тем, кто обращался 3–12 месяцев назад: «Как ваша стройка? Если вопрос с кровлей ещё открыт — пересчитаю сечение бесплатно». Готовые шаблоны сообщений уже разработаны в рамках проекта.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Вывод №4</span>
+      <div class="card-title">65–70% потенциальных клиентов не знают, что LVL существует</div>
+      <p class="card-text">Те, кто ищут «LVL-брус» — лишь 30–35% рынка. Основная масса ищет «чем перекрыть 8 метров», «балки на большой пролёт», «прогнулись балки что делать». Ни один конкурент не работает с этими запросами.</p>
+      <p class="card-text"><strong>Что это значит:</strong> попросите вашего подрядчика по Авито создать новые объявления не на «LVL-брус», а на «Балки перекрытия на 7–13 м», «Коньковый брус 8 метров», «Чем перекрыть пролёт без опор». Это бесплатно, кроме времени.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Вывод №5</span>
+      <div class="card-title">SEO и Директ — доказанно убыточные каналы</div>
+      <p class="card-text">SEO: вложено ~1,2 млн руб. за 1,5 года — сайт давал 10–15 лидов/мес. <strong>Остановлено с 1 ноября 2025 года</strong> — это экономия 50 000 руб./мес (600 000 руб./год). Яндекс.Директ: 150 тыс. → 20 лидов, цена лида 7 500 руб. — при марже 27% экономика не сходится. Причина: рынок слишком узкий (всего ~1 000 запросов/мес на весь LVL).</p>
+      <p class="card-text"><strong>Единственный эффективный канал — Авито:</strong> 15–20 тыс./мес → ~550 лидов → ~20 сделок. ROI: 4 000–5 000%. Вся стратегия строится на масштабировании этого канала + добавление новых источников (реактивация базы, проектировщики).</p>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Вывод №6</span>
+      <div class="card-title">Апселл «комплект кровли» может дать +90 тыс./мес при нулевых затратах</div>
+      <p class="card-text">Сейчас клиенту продаётся только конёк. Но ему также нужны стропила, мауэрлат, балки перекрытия — всё из LVL. Если предлагать комплект каждому клиенту, при конверсии 30–40% средний чек вырастет на 40–60%.</p>
+      <p class="card-text"><strong>Что это значит:</strong> после расчёта сечения конька добавьте одну фразу: «Кстати, стропила и мауэрлат тоже нужны из LVL? Могу посчитать весь комплект — выйдет выгоднее, чем по частям». Это буквально одно предложение, которое увеличивает чек.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. РЕШЕНИЯ -->
+<section>
+  <div class="container">
+    <span class="section-number">04 — Что разработано</span>
+    <h2 class="section-title">Главные инструменты стратегии</h2>
+    <p class="section-lead">Четыре ключевых блока, которые превращают интуитивно правильные действия в систему.</p>
+
+    <h3>Позиционирование: «Метод Открытого Расчёта»</h3>
+    <p>Раньше вы были «ещё одним поставщиком бруса с Авито». Теперь у вас есть уникальная концепция, которая отвечает на вопрос «почему вы, а не Брус 3-7?». Ответ: потому что только вы показываете расчёт и говорите — проверьте. Конкурентам нечего показать.</p>
+
+    <div class="insight-block">
+      <span class="insight-label">Главная формулировка — запомните и используйте</span>
+      <p>«LVL Market существует для одной цели: чтобы человек, строящий дом, перестал собирать мнения и начал видеть расчёт. Мы не учим вас быть инженером — мы даём навигатор. Три цифры, 15 минут, одна страница. Мы не просим верить — мы даём инструмент проверки.»</p>
+    </div>
+
+    <h3>5 «фирменных» характеристик вашего предложения</h3>
+    <p>Каждая обычная характеристика получила запоминающееся название. Используйте эти названия в контенте, на сайте, в объявлениях — но <strong>не в живом разговоре с клиентом</strong> (в разговоре говорите простым языком).</p>
+
+    <div class="fw-grid">
+      <div class="fw-card"><div class="fw-card-num">01</div><div class="fw-card-title">Протокол Трёх Цифр</div><p class="fw-card-desc">Бесплатный расчёт за 15 минут. Клиент даёт 3 цифры (пролёт, шаг стропил, регион) — получает документ с сечением и запасом прочности</p></div>
+      <div class="fw-card"><div class="fw-card-num">02</div><div class="fw-card-title">Паспорт Конструктивной Надёжности</div><p class="fw-card-desc">PDF-документ с расчётом — не просто сообщение в WhatsApp, а официальный документ, который можно показать инженеру</p></div>
+      <div class="fw-card"><div class="fw-card-num">03</div><div class="fw-card-title">Индекс Надёжности</div><p class="fw-card-desc">Цифра запаса прочности (27%). В разговоре: «запас прочности 27%» — мгновенно снимает тревогу</p></div>
+      <div class="fw-card"><div class="fw-card-num">04</div><div class="fw-card-title">Система «Брус Завтра»</div><p class="fw-card-desc">5 складов, отгрузка на следующий день. Решает главную боль — бригада стоит, каждый день простоя = 12–15 тыс.</p></div>
+      <div class="fw-card"><div class="fw-card-num">05</div><div class="fw-card-title">Гарантия «Проверьте Сами»</div><p class="fw-card-desc">Открытый вызов: расчёт можно проверить у любого инженера. 400+ сделок, ноль рекламаций</p></div>
+    </div>
+
+    <h3>Новая структура сайта</h3>
+    <p>Сайт сейчас не приносит клиентов — и это нормально для такого узкого рынка. Его задача другая: когда клиент находит вас на Авито, он гуглит «LVL Market» и должен увидеть, что компания реальная. Для этого разработана новая структура:</p>
+    <p><strong>Главная страница</strong> — «визитка доверия»: фото, контакты, цифры (14 лет, 400+ отгрузок, 5 складов). <strong>Четыре лендинга для разных типов клиентов:</strong> /stroyu-dom/ (самостройщик), /prorab/ (прораб), /spetsifikatsiya/ (клиент с готовой спецификацией), /kommercheskie-obekty/ (ангары, бассейны, сельхоз). Для каждого — готовые тексты.</p>
+
+    <h3>Готовые скрипты и шаблоны</h3>
+    <p>Разработаны и готовы к использованию:</p>
+    <p><strong>Скрипт для Авито-объявлений</strong> — готовые тексты заголовков и описаний, которые можно скопировать и поставить. <strong>Скрипт телефонного разговора</strong> — структура: задача → расчёт → цена → наличие → доставка. <strong>Шаблон сообщения в WhatsApp после расчёта</strong> — готовый текст с расчётом, ценой и CTA. <strong>Email-машина реактивации</strong> — 10 писем на 14 дней для тех, кто не купил, и для тех, кто купил (просьба о рекомендации).</p>
+  </div>
+</section>
+
+<!-- 5. ПОШАГОВЫЙ ПЛАН -->
+<section>
+  <div class="container">
+    <span class="section-number">05 — Пошаговый план</span>
+    <h2 class="section-title">Что делать и в каком порядке</h2>
+    <p class="section-lead">Каждый шаг описан так, чтобы было понятно: что именно сделать, как это сделать, и какой результат ожидать. Двигайтесь строго по порядку — от простого к сложному.</p>
+
+    <!-- ФАЗА 1 -->
+    <div class="roadmap-phase">
+      <span class="roadmap-label roadmap-label--now">Фаза 1 — Эта неделя (0 руб. затрат)</span>
+
+      <div class="step-block">
+        <div class="step-header"><div class="step-num">1</div><h4>Начните предлагать комплект вместо одного конька</h4></div>
+        <p class="step-what">Каждому клиенту, который покупает коньковый брус, предложите также стропила и мауэрлат из LVL. Это увеличит средний чек на 40–60%.</p>
+        <div class="step-how">
+          <span class="step-how-label">Как это сделать</span>
+          После расчёта сечения конька скажите: «Кстати, вам ведь ещё стропила и мауэрлат нужны? Могу посчитать весь кровельный комплект — обычно получается выгоднее, чем набирать по частям у разных поставщиков.» Если клиент согласится — рассчитайте и добавьте в заказ. Ожидаемый эффект: +90 000 руб./мес к прибыли.
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header"><div class="step-num">2</div><h4>Измените первую реакцию на вопрос «сколько стоит?»</h4></div>
+        <p class="step-what">Вместо того чтобы сразу называть цену, сначала узнайте задачу клиента. Это переводит разговор с уровня «товар по цене» на уровень «решение проблемы».</p>
+        <div class="step-how">
+          <span class="step-how-label">Как это сделать</span>
+          Когда клиент спрашивает «сколько стоит 75×400?» — ответьте: «Да, конечно. А какой у вас пролёт? Давайте я заодно проверю, подходит ли это сечение под вашу нагрузку — чтобы вы не переплатили за лишнее и не сэкономили на нужном. Бесплатно, 15 минут.» Цену назовёте после расчёта — и она будет восприниматься иначе, потому что за ней стоит обоснование.
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header"><div class="step-num">3</div><h4>Обновите главное объявление на Авито</h4></div>
+        <p class="step-what">Замените текущее описание объявления на новое, которое использует разработанные хуки. Это займёт 30 минут.</p>
+        <div class="step-how">
+          <span class="step-how-label">Как это сделать</span>
+          Откройте ваше главное объявление на Авито → нажмите «Редактировать» → замените описание. Новый текст: «Три продавца бруса — три разных сечения. Кто прав? Бесплатный инженерный расчёт за 15 минут. Вы видите не мнение продавца, а расчёт с запасом прочности. Покажите любому инженеру для проверки. 14 лет на рынке, 400+ отгрузок, 0 рекламаций. 5 складов, отгрузка — завтра.» Готовые варианты для разных форматов — в документе BIG ATTENTION.
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header"><div class="step-num">4</div><h4>Попросите подрядчика создать объявления под «небрендовые» запросы</h4></div>
+        <p class="step-what">Создайте 2–3 новых объявления не на «LVL-брус», а на запросы людей, которые ещё не знают про LVL, но ищут решение своей проблемы.</p>
+        <div class="step-how">
+          <span class="step-how-label">Как это сделать</span>
+          Напишите или позвоните вашему подрядчику по Авито и дайте задание: «Создай 3 новых объявления с заголовками: (1) Балки перекрытия на пролёт 7–13 метров, (2) Коньковый брус 8–13 м — прочнее металла, легче бетона, (3) Чем перекрыть большой пролёт без промежуточных опор. В описании каждого — предложение бесплатного расчёта.» Это захват 65–70% рынка, которые ищут решение, а не конкретный материал.
+        </div>
+      </div>
+    </div>
+
+    <!-- ФАЗА 2 -->
+    <div class="roadmap-phase">
+      <span class="roadmap-label roadmap-label--month">Фаза 2 — Ближайший месяц (минимальные затраты)</span>
+
+      <div class="step-block">
+        <div class="step-header"><div class="step-num">5</div><h4>Создайте PDF-шаблон «Паспорт Конструктивной Надёжности»</h4></div>
+        <p class="step-what">Это одностраничный PDF-документ, который вы будете отправлять клиенту после каждого расчёта. Не просто текст в WhatsApp — а документ, который выглядит официально.</p>
+        <div class="step-how">
+          <span class="step-how-label">Как это сделать</span>
+          Закажите у фрилансера на Авито или Kwork шаблон PDF (стоимость 3–5 тыс. руб.). В шаблоне: логотип LVL Market, данные клиента (пролёт, шаг, регион), результат расчёта (сечение, прогиб, допустимый прогиб, запас прочности), внизу: «Покажите этот документ любому инженеру для проверки — мне нечего прятать.» Заполняйте шаблон после каждого расчёта и отправляйте клиенту в WhatsApp.
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header"><div class="step-num">6</div><h4>Увеличьте бюджет Авито с 15 до 30 тыс./мес</h4></div>
+        <p class="step-what">Текущий ROI Авито — 4 000–5 000%. Удвоение бюджета даёт +40–50% лидов, то есть +8–10 сделок/мес = +1,1–1,3 млн выручки.</p>
+        <div class="step-how">
+          <span class="step-how-label">Как это сделать</span>
+          Напишите подрядчику: «Увеличиваем бюджет на Авито до 30 тыс./мес. Доп. бюджет направить на продвижение новых объявлений (по "небрендовым" запросам) и на выделение ходовых размеров (75×300, 75×400).» Отслеживайте: если за 2 недели лидов стало заметно больше — бюджет работает. ROI дополнительных 15 тыс.: ~2 000%.
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header"><div class="step-num">7</div><h4>Снимите два видео на смартфон</h4></div>
+        <p class="step-what">Видео расчёта (скринкаст, 2–3 мин) и видео-экскурсия по складу (3–5 мин). Визит на склад даёт конверсию 100% — видео заменяет визит для тех, кто не может приехать.</p>
+        <div class="step-how">
+          <span class="step-how-label">Как это сделать</span>
+          <strong>Видео 1 — расчёт:</strong> откройте программу расчёта на компьютере, включите запись экрана (на Windows: Win+G → «Начать запись»), проговорите расчёт для реального пролёта: «Пролёт 8 метров, снеговая нагрузка Московский регион, шаг стропил 600 мм. Запускаю расчёт. Результат: сечение 75×300, прогиб 2,5 при допустимом 4,5, запас 27%.» 
+          <strong>Видео 2 — склад:</strong> приедьте на склад, снимите на телефон: штабели бруса, штамп завода Ультралам на брусе, промерьте рулеткой размер в кадре. Скажите: «Вот ваш брус. Штамп завода. Размеры — проверяйте.» Монтаж — фрилансер на Kwork за 3–5 тыс. руб. Видео разместите на Авито и на сайте.
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header"><div class="step-num">8</div><h4>Упакуйте кейс «60 тыс. экономии → 300 тыс. переделки»</h4></div>
+        <p class="step-what">Это ваш самый сильный аргумент при возражении «дорого». Реальная история, которую вы знаете — но она нигде не оформлена.</p>
+        <div class="step-how">
+          <span class="step-how-label">Как это сделать</span>
+          Запишите историю текстом (500–700 слов): что случилось, какое сечение поставили, через сколько лет прогнулось, сколько стоила переделка. Если можете — свяжитесь с тем клиентом и попросите фото (или анонимизируйте историю). Оформите как пост для Авито-профиля, как текст на сайт и как шаблон для отправки в WhatsApp, когда клиент говорит «дорого». Готовый текст кейса уже есть в документе «Email-машина реактивации» (Письмо А2).
+        </div>
+      </div>
+    </div>
+
+    <!-- ФАЗА 3 -->
+    <div class="roadmap-phase">
+      <span class="roadmap-label roadmap-label--winter">Фаза 3 — Зимняя подготовка (ноябрь–февраль)</span>
+
+      <div class="step-block">
+        <div class="step-header"><div class="step-num">9</div><h4>Запустите реактивацию базы — начните с «горячих»</h4></div>
+        <p class="step-what">Из 10 000 контактов в CRM начните с тех, кто получил расчёт, но не купил — это самая конверсионная группа.</p>
+        <div class="step-how">
+          <span class="step-how-label">Как это сделать</span>
+          Откройте AmoCRM → отфильтруйте контакты со статусом «Думает» или «Расчёт отправлен» за последние 3–12 месяцев. Отправьте каждому сообщение в Авито-чат или WhatsApp: «{Имя}, здравствуйте! Это Владислав, LVL Market. Вы обращались к нам по поводу бруса на пролёт {X} м. Как дела на стройке? Если вопрос с кровлей ещё открыт — могу пересчитать под актуальные размеры на складе. Бесплатно.» Отправляйте 50–100 сообщений в день (30 минут работы). Готовые шаблоны для всех подгрупп — в документе «Система реактивации клиентской базы». Ожидание: 32 сделки = 4,3 млн руб. (консервативно).
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header"><div class="step-num">10</div><h4>Наймите помощника на первичную обработку заявок</h4></div>
+        <p class="step-what">Вы обрабатываете ~20 лидов в день, работая 8–10 часов. При росте до 40–60 лидов/день вы не справитесь. Помощник на аутсорсе берёт на себя первичную квалификацию.</p>
+        <div class="step-how">
+          <span class="step-how-label">Как это сделать</span>
+          Разместите вакансию «Удалённый помощник по обработке заявок» на HeadHunter или в Telegram-каналах по удалёнке. Задачи помощника: отвечать на первичные обращения по скрипту (скрипт уже разработан), собирать 3 цифры (пролёт, шаг, регион), передавать вам для расчёта. Оплата: 15–25 тыс./мес (4–6 часов/день). Вы занимаетесь только расчётами и закрытием сделок. Это высвобождает 3–4 часа/день для стратегических задач.
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header"><div class="step-num">11</div><h4>Начните работу с проектировщиками</h4></div>
+        <p class="step-what">Проектировщики закладывают LVL в проект — клиент приходит с готовой спецификацией и покупает без торга. Средний чек таких клиентов — 200–500 тыс. Этот канал работает круглый год (проектируют зимой, покупают весной).</p>
+        <div class="step-how">
+          <span class="step-how-label">Как это сделать</span>
+          Найдите 20 проектировщиков/архитекторов через ForumHouse, строительные Telegram-каналы, или через клиентов, которые приходили «по спецификации» (спросите: «Кто вам проектировал?»). Напишите каждому: «Я — технический партнёр по LVL. Вы закладываете LVL в проект — я бесплатно считаю сечение, подбираю размеры с наличием на 5 складах, гарантирую быструю отгрузку вашему заказчику. Вам не нужно разбираться в ассортименте.» Из 20 — 5–7 начнут направлять клиентов. Это 4–8 лидов/мес с конверсией 30–50%. Потенциал: 600 тыс. – 1,2 млн доп. выручки/мес.
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header"><div class="step-num">12</div><h4>Переделайте сайт по разработанной структуре</h4></div>
+        <p class="step-what">Сайт не будет источником лидов — это нормально для узкого рынка. Его задача — подтвердить клиенту с Авито, что компания реальная, и направить каждый сегмент на свою страницу.</p>
+        <div class="step-how">
+          <span class="step-how-label">Как это сделать</span>
+          Найдите веб-разработчика (фрилансер, 30–50 тыс. руб.). Передайте ему документ «План переделки сайта» — там полная структура + готовые тексты для каждой страницы + описание блоков. Разработчику останется только сверстать. Готовые тексты для 4 лендингов — в отдельных документах проекта. Главное на главной странице: фото, контакты, 3 кнопки мессенджеров, 4 карточки-маршрутизатора («Какая у вас ситуация?»).
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ФИНАНСОВЫЙ ПРОГНОЗ -->
+<section>
+  <div class="container">
+    <span class="section-number">06 — Путь к цели</span>
+    <h2 class="section-title">Как прийти к 600 тыс./мес</h2>
+    <p class="section-lead">Конкретная арифметика: какой вклад даёт каждое действие, и как их сумма приводит к целевому доходу.</p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr><th>Действие</th><th>Доп. прибыль/мес</th><th>Затраты/мес</th><th>Когда результат</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Апселл «комплект кровли»</td><td><strong>+90 тыс.</strong></td><td>0</td><td>Сразу</td></tr>
+        <tr><td>Экономия на SEO (уже остановлено)</td><td><strong>+50 тыс.</strong></td><td>0</td><td>Уже экономите</td></tr>
+        <tr><td>Масштабирование Авито (бюджет + семантика)</td><td><strong>+300–350 тыс.</strong></td><td>15–20 тыс.</td><td>2–4 недели</td></tr>
+        <tr><td>Реактивация базы</td><td><strong>+30–290 тыс.</strong> (разово)</td><td>0–5 тыс.</td><td>2–4 недели</td></tr>
+        <tr><td>Работа с проектировщиками</td><td><strong>+100–430 тыс.</strong></td><td>0–50 тыс. (комиссии)</td><td>3–6 месяцев</td></tr>
+        <tr><td>Помощник на первичную квалификацию</td><td><strong>+53–350 тыс.</strong> (за счёт обработки пропущенных)</td><td>15–25 тыс.</td><td>1–2 месяца</td></tr>
+        <tr><td>Кейсы + видео (рост конверсии)</td><td><strong>+63–250 тыс.</strong></td><td>10–20 тыс. (разово)</td><td>1–3 месяца</td></tr>
+      </tbody>
+    </table>
+
+    <div class="insight-block">
+      <span class="insight-label">Итого — путь к цели</span>
+      <p>Текущий средний доход: 370–420 тыс./мес (но зимой 0–100 тыс., летом 600–1 000 тыс.). Задача — поднять среднегодовой до 600 тыс./мес стабильно, включая зиму. При внедрении: апселлы (+90 тыс.) + экономия SEO (+50 тыс.) + масштабирование Авито (+300 тыс.) = в сезон доход превысит 1 млн/мес. Реактивация базы и проектировщики закрывают зимнюю просадку — вместо 0–100 тыс. зимой выходите на 200–350 тыс. Среднегодовой — 600+ тыс./мес. Цель достижима к декабрю 2026 при дисциплинированном внедрении.</p>
+    </div>
+
+    <h3>Долгосрочный горизонт: 100+ млн выручки</h3>
+    <p>Текущая доля рынка LVL Market — ~0,8% (35 млн из доступного рынка 4–4,5 млрд руб.). Для выручки 100+ млн нужна доля ~2,2%. Это реалистично: конкурентная среда из 6 игроков, ни один не занимается системным маркетингом, окно возможности открыто.</p>
+    <p><strong>Дополнительная точка роста — модульные дома из LVL.</strong> Это отдельное направление с потенциалом: три типоразмера (30, 60, 90 м²), средний чек от 300 тыс. до 2+ млн руб. Запросы уже поступают (видно из звонков). Рекомендация: пока не инвестировать в это направление специально, но фиксировать входящие запросы и по мере роста основного направления — рассмотреть как стратегический продукт.</p>
+  </div>
+</section>
+
+<!-- 7. КРИТИЧЕСКОЕ ПРЕДУПРЕЖДЕНИЕ -->
+<section>
+  <div class="container">
+    <span class="section-number">07 — Главный риск</span>
+    <h2 class="section-title">Единственное, что может помешать</h2>
+    <p class="section-lead">Система готова. Инструменты разработаны. Всё зависит от одного фактора — последовательного внедрения.</p>
+
+    <div class="warning-block">
+      <span class="warning-label">Честный разговор</span>
+      <p>За 1,5 года на SEO потрачено ~900 тыс. руб. без контроля результата. Директ запускался дважды без аналитики. Сайт переделывался дважды без понимания, зачем он нужен. Это не ошибки — это отсутствие системы. Теперь система есть. Но система работает только если по ней идти. Главный риск — не конкуренты, не рынок, не сезонность. Главный риск — отложить на «потом» и вернуться к текучке 20 лидов в день.</p>
+    </div>
+
+    <h3>Простое правило: одно действие в неделю</h3>
+    <p>Не нужно внедрять всё сразу. Берите один шаг из плана в неделю. Первая неделя — апселлы. Вторая — новый текст на Авито. Третья — задание подрядчику на новые объявления. За месяц — четыре конкретных изменения. За три месяца — система работает.</p>
+
+    <h3>Метрики для самоконтроля</h3>
+    <p>Раз в неделю проверяйте в CRM четыре цифры: количество лидов за неделю, количество расчётов, количество сделок, средний чек. Если лидов стало больше, а сделок нет — проблема в конверсии (скрипт разговора). Если сделок столько же, но чек не растёт — забыли про апселлы. Если лидов мало — Авито нужно больше бюджета или объявлений.</p>
+
+    <p><strong>Целевые метрики к декабрю 2026:</strong> чистая прибыль 600 тыс./мес стабильно (включая зиму), средний чек 180–200 тыс., доля лидов не с Авито — минимум 20%, помощник на первичной квалификации, 5–10 активных партнёров-проектировщиков, зимний доход — минимум 300 тыс./мес (вместо нуля).</p>
+  </div>
+</section>
+
+<!-- 8. ДОКУМЕНТЫ -->
+<section>
+  <div class="container">
+    <span class="section-number">08 — Переданные документы</span>
+    <h2 class="section-title">Что у вас на руках</h2>
+    <p class="section-lead">Полный перечень документов, переданных по итогам проекта. Каждый — самостоятельный рабочий инструмент. Открывайте нужный — и берите готовые тексты, формулировки, скрипты.</p>
+
+    <table class="doc-table">
+      <thead><tr><th>Документ</th><th>Когда открывать</th></tr></thead>
+      <tbody>
+        <tr><td>BIG REASON — Архитектурный план оффера</td><td>Когда нужны скрипты для Авито, телефона, WhatsApp. Здесь всё: что говорить, как отвечать на возражения</td></tr>
+        <tr><td>BIG ATTENTION — Пакет захвата внимания (81 хук)</td><td>Когда пишете новое объявление на Авито или пост. Выбираете заголовок из списка — и используете</td></tr>
+        <tr><td>BIG IMAGE — Система восприятия ценности</td><td>Когда нужны формулировки для сайта, презентации или рекламы. 49 готовых фраз</td></tr>
+        <tr><td>BIG BRICKS — 10 готовых текстов</td><td>Когда нужен контент для Telegram, email или YouTube. 10 текстов, готовых к публикации</td></tr>
+        <tr><td>Email-машина реактивации (10 писем)</td><td>Когда запускаете рассылку по базе. Копируете письма и отправляете по графику</td></tr>
+        <tr><td>Система реактивации клиентской базы</td><td>Когда начинаете обзвон/рассылку по CRM. Шаблоны для каждого типа контакта</td></tr>
+        <tr><td>План переделки сайта + 4 лендинга</td><td>Когда отдаёте сайт разработчику. Там полная структура + все тексты</td></tr>
+        <tr><td>BIG PICTURE — Манифест проекта</td><td>Когда нужно вспомнить общую стратегию. «Конституция» маркетинга — вся система на одной странице</td></tr>
+        <tr><td>Анализ ЦА + JTBD + Стратегический анализ рынка</td><td>Когда нужно понять, кто ваш клиент и что им движет. Портреты, боли, мотивы, путь к покупке</td></tr>
+        <tr><td>Сбор фактуры бизнеса (120+ вопросов)</td><td>Для справки: полная картина текущего состояния бизнеса, финансы, конверсии, узкие места</td></tr>
+        <tr><td>BIG MOTIVATION + BIG EMOTION + BIG IDEA + BIG DOMINO</td><td>Стратегический фундамент: психология рынка, эмоции ЦА, концепция позиционирования, система убеждения. Используются через другие документы</td></tr>
+        <tr><td>Стратегия технологического превосходства в B2B</td><td>Когда появляется запрос на ангар, бассейн, сельхоз. Готовое позиционирование LVL vs металл vs бетон</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 9. ЗАКЛЮЧЕНИЕ -->
+<section>
+  <div class="container">
+    <span class="section-number">09 — Заключение</span>
+    <h2 class="section-title">Итог проделанной работы</h2>
+
+    <p>Проект вышел далеко за рамки стандартной маркетинговой консультации. Вместо набора рекомендаций вы получили <strong>целостную систему из 9 фреймворков + готовые инструменты</strong>, которые можно внедрять прямо сейчас — без дополнительных вложений, без найма команды, без сложных технологий.</p>
+
+    <p>Ключевая ценность проекта в том, что он превратил ваши интуитивно правильные действия в формализованную систему. Бесплатный расчёт, который вы делали «просто потому что так правильно», стал <strong>брендированным конкурентным преимуществом</strong> — «Метод Открытого Расчёта». Живой стиль продаж — превратился в <strong>документированные скрипты</strong>. База из 10 000 контактов — из «мёртвого списка» в <strong>актив стоимостью 4+ млн руб.</strong></p>
+
+    <p>Объём выполненных работ значительно превысил условия договора: помимо 8 пунктов договора, разработаны 9 стратегических фреймворков, стратегический анализ рынка, система реактивации базы, стратегия для B2B, 81 готовый хук для Авито и другие инструменты — каждый из которых является самостоятельным рабочим активом.</p>
+
+    <div class="insight-block">
+      <span class="insight-label">Главный вывод</span>
+      <p>LVL Market уже обладает всем необходимым для кратного роста. Экспертиза, база клиентов, каналы сбыта, история на рынке — всё есть. Проблема была не в отсутствии преимуществ, а в том, что они не были упакованы и систематизированы. Теперь они упакованы. Осталось внедрить — шаг за шагом, одно действие в неделю.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ПРИЛОЖЕНИЕ -->
+<section>
+  <div class="container">
+    <span class="section-number">Приложение</span>
+    <h2 class="section-title">Полный реестр переданных документов</h2>
+    <p class="section-lead">Все документы, созданные в рамках проекта, с кратким пояснением содержания и назначения каждого.</p>
+
+    <h3>Основные стратегические документы (9 фреймворков)</h3>
+    <table class="doc-table">
+      <thead><tr><th>Название документа</th><th>Что внутри и когда пригодится</th></tr></thead>
+      <tbody>
+        <tr><td>BIG MOTIVATION — Пятислойный анализ массовой мотивации</td><td>Глубинная карта того, почему клиенты покупают LVL. Тренд «инфляция ответственности», коллективный невроз рынка, «ложные евангелия» (подходы, которые не работают). Пригодится, когда нужно понять, что движет рынком и на какие «кнопки» нажимать</td></tr>
+        <tr><td>BIG EMOTION — Паспорт эмоционального состояния аудитории</td><td>Описание главной эмоции клиента (тревога 9/10), желаемого состояния (осознанная уверенность) и пути между ними. 21 речевой модуль — готовые фразы для писем, объявлений и разговоров. Пригодится при написании любых текстов для клиентов</td></tr>
+        <tr><td>BIG IDEA — Карта рыночного контекста и концепция позиционирования</td><td>Концепция «Метод Открытого Расчёта» и новая рыночная категория «Продажа с открытым расчётом». Ответ на вопрос «почему вы, а не конкуренты?». Пригодится как точка отсчёта для любого маркетингового решения</td></tr>
+        <tr><td>BIG DOMINO — «Библия Домино»</td><td>Один главный аргумент, который убирает все возражения разом. Лестница убеждений из 7 ступеней. Карта уничтожения возражений. Сценарий «Моста Озарения». Пригодится при работе с возражениями «дорого», «подумаю», «а вдруг кинете»</td></tr>
+        <tr><td>BIG REASON — Архитектурный план оффера</td><td>Полная конструкция предложения с показателем ценности 20,25. Готовые скрипты: текст для Авито, сценарий телефонного разговора, шаблон сообщения в WhatsApp. Пригодится ежедневно — это ваши рабочие скрипты</td></tr>
+        <tr><td>BIG IMAGE — Система восприятия ценности продукта</td><td>5 брендированных характеристик (Протокол Трёх Цифр, Паспорт Конструктивной Надёжности и др.), 49 готовых формулировок, 5 кинематографичных сценариев, драматургия презентации. Пригодится при написании текстов для сайта, рекламы, контента</td></tr>
+        <tr><td>BIG ATTENTION — Инженерный пакет захвата внимания</td><td>81 готовый заголовок/хук для Авито, WhatsApp, email, Telegram. 14 в «Золотом Фонде», 5 в «Элитном Отряде». Пригодится, когда нужен заголовок для объявления или поста — просто откройте и выберите</td></tr>
+        <tr><td>BIG BRICKS — Конструктор убеждающих последовательностей</td><td>10 готовых текстов, выстроенных в убеждающую последовательность. 4 карты сборки (варианты порядка). Руководства по адаптации. Пригодится при запуске Telegram-канала, email-рассылки или подготовке контента для YouTube</td></tr>
+        <tr><td>BIG PICTURE — Манифест проекта</td><td>Единый стратегический документ — «конституция» маркетинга LVL Market. Стресс-тест по 23 контрольным точкам, сертификат целостности, стратегическая карта трансляции, план внедрения. Пригодится как главный компас — сверяйтесь с ним перед каждым решением</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Аналитические документы</h3>
+    <table class="doc-table">
+      <thead><tr><th>Название документа</th><th>Что внутри и когда пригодится</th></tr></thead>
+      <tbody>
+        <tr><td>Сбор полной картины текущего состояния бизнеса LVL Market</td><td>Финансовый рентген бизнеса: выручка, маржа, расходы, сезонность, юнит-экономика. Экономическое моделирование 7 вариантов роста с прогнозами. Пригодится для понимания, откуда берутся деньги и где теряются</td></tr>
+        <tr><td>Стратегическая форма для сбора фактуры бизнеса V 2.0</td><td>120+ вопросов и ответов о бизнесе: от финансов до конкурентов, от процесса продаж до личных целей. Пригодится как справочник «всего о бизнесе» при постановке задач подрядчикам</td></tr>
+        <tr><td>Стратегический анализ рынка и сегментов LVL Market</td><td>Объём рынка (9 млрд руб.), доступный рынок (4–4,5 млрд), 8 подсегментов клиентов с приоритетами, сезонность, поведенческие характеристики. Пригодится при планировании — сколько клиентов реально доступно и где они</td></tr>
+        <tr><td>Анализ целевой аудитории LVL Market</td><td>Подробные портреты 4 «золотых» сегментов ЦА: кто они, что чувствуют, как принимают решения, какие слова используют, через какие этапы проходят. Пригодится при написании объявлений — чтобы говорить на языке конкретного сегмента</td></tr>
+        <tr><td>JTBD-анализ LVL Market</td><td>Анализ «работ, на которые нанимают продукт»: какую задачу решает каждый сегмент, в какой ситуации обращается, что для него критично. Пригодится для понимания, почему клиенты на самом деле покупают</td></tr>
+        <tr><td>Пятислойный анализ мотивации (прорабы и бригадиры)</td><td>Отдельный глубинный анализ сегмента B2B — прорабов. «Ловушка компетентного заложника», корневое убеждение, стратегический ответ. Пригодится при работе с B2B-сегментом и создании контента для прорабов</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Прикладные документы (готовые к внедрению)</h3>
+    <table class="doc-table">
+      <thead><tr><th>Название документа</th><th>Что внутри и когда пригодится</th></tr></thead>
+      <tbody>
+        <tr><td>План переделки сайта LVL Market</td><td>Полная структура нового сайта: главная страница + 4 лендинга + каталог + страницы «О продукте» и «О компании». Для каждой — готовые тексты. Пригодится, когда отдадите сайт разработчику — это его техзадание</td></tr>
+        <tr><td>Лендинг для самостройщика (/stroyu-dom/)</td><td>Полный текст лендинга для основного сегмента — человека, который строит дом и дошёл до кровли. Эмоциональный, с историей, CTA. Пригодится как страница сайта и как шаблон для объявлений</td></tr>
+        <tr><td>Лендинг для прораба (/prorab/)</td><td>Текст лендинга для прорабов и бригадиров. Тон «на ты», фокус на документе для заказчика. Пригодится как страница сайта для B2B-трафика</td></tr>
+        <tr><td>Лендинг для клиента по спецификации (/spetsifikatsiya/)</td><td>Деловой, лаконичный лендинг для клиентов с готовой спецификацией от проектировщика. Таблица размеров, быстрый CTA. Пригодится для привлечения «быстрых» сделок</td></tr>
+        <tr><td>Лендинг для коммерческих объектов (/kommercheskie-obekty/)</td><td>Лендинг для B2B: ангары, бассейны, сельхоз. Сравнение LVL vs металл vs бетон, экономика. Пригодится при появлении крупных заказов</td></tr>
+        <tr><td>Email-машина реактивации (10 писем, 2 сегмента, 14 дней)</td><td>10 готовых писем: 5 для тех, кто не купил + 5 для тех, кто купил (запрос рекомендаций). Каждое письмо — элемент убеждающей цепочки. Пригодится при запуске рассылки по базе CRM</td></tr>
+        <tr><td>Система реактивации клиентской базы LVL Market</td><td>Полная система из 7 блоков: цепочки для самостройщиков (5 сообщений), для строителей (2 сообщения), для проектировщиков (2 сообщения), сарафанный блок, 15 вопросов для сбора обратной связи, 7 принципов, план по неделям. Пригодится как операционный план обзвона/рассылки базы</td></tr>
+        <tr><td>Стратегия технологического превосходства в B2B-строительстве</td><td>Отдельная стратегия для коммерческого сегмента: позиционирование LVL в нишах агрессивных сред (бассейны, сельхоз, химия), где LVL выигрывает у металла безоговорочно. Пригодится при появлении B2B-запросов</td></tr>
+        <tr><td>Позиционирование и логика работы в нише LVL-бруса</td><td>Карта рыночной позиции: кто конкуренты, в чём отличие, как отстраиваться. Стратегия «инженерный партнёр, а не продавец бруса». Пригодится как стратегический ориентир</td></tr>
+        <tr><td>Принцип Единой Системы: Как Связаны 9 Фреймворков</td><td>Справочный документ: как 9 этапов связаны друг с другом, что за чем следует, как данные передаются по цепочке. Пригодится для понимания общей логики системы</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">ИП Ильясова Т.А.</div>
+  <p class="footer-text">Консалтинговый проект по разработке маркетинговой стратегии<br>Договор № 28/01/26</p>
+</footer>
+
+</body>
+</html>
