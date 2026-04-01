@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Коммерческое предложение | AI-помощник для LVL Market</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0E17;
+  --bg-card: #111827;
+  --bg-card-hover: #1A2332;
+  --bg-accent: rgba(196, 167, 103, 0.08);
+  --text: #E2E8F0;
+  --text-soft: #94A3B8;
+  --text-dim: #64748B;
+  --gold: #C4A767;
+  --gold-bright: #D4B96A;
+  --gold-dim: rgba(196, 167, 103, 0.15);
+  --blue: #60A5FA;
+  --blue-dim: rgba(96, 165, 250, 0.1);
+  --green: #4ADE80;
+  --green-dim: rgba(74, 222, 128, 0.1);
+  --red: #FB7185;
+  --red-dim: rgba(251, 113, 133, 0.1);
+  --orange: #FBBF24;
+  --orange-dim: rgba(251, 191, 36, 0.1);
+  --border: rgba(255,255,255,0.06);
+  --border-gold: rgba(196, 167, 103, 0.2);
+  --r: 10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{font-family:'Nunito Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.75;font-size:24px;-webkit-font-smoothing:antialiased}
+
+.slide{min-height:100vh;display:flex;align-items:center;padding:80px 24px;position:relative;overflow:hidden}
+.slide+.slide{border-top:1px solid var(--border)}
+.slide-inner{max-width:900px;margin:0 auto;width:100%}
+
+.hero{justify-content:center;text-align:center}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 30% 80%,rgba(196,167,103,0.06) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 75% 20%,rgba(96,165,250,0.04) 0%,transparent 60%);pointer-events:none}
+.hero .slide-inner{position:relative;z-index:1;animation:rise 1s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+.badge{display:inline-block;font-family:'Fira Code',monospace;font-size:17px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid var(--border-gold);padding:8px 20px;border-radius:99px;margin-bottom:36px;background:var(--gold-dim)}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.65rem,5.5vw,4.25rem);font-weight:700;line-height:1.15;margin-bottom:20px}
+h1 .accent{color:var(--gold)}
+.hero-sub{font-size:1.75rem;color:var(--text-soft);max-width:620px;margin:0 auto 44px;font-weight:300;line-height:1.85}
+.hero-meta{display:flex;gap:28px;justify-content:center;flex-wrap:wrap}
+.hero-meta span{font-size:1.17rem;color:var(--text-dim);font-family:'Fira Code',monospace}
+
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.95rem,3.2vw,2.75rem);font-weight:700;margin-bottom:18px;line-height:1.25}
+h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;margin:36px 0 14px;color:var(--text)}
+.label{font-family:'Fira Code',monospace;font-size:17px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block}
+p{margin-bottom:16px;color:var(--text-soft);line-height:1.8;font-size:1.55rem}
+strong{color:var(--text);font-weight:600}
+
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:32px;margin-bottom:16px;transition:border-color .3s}
+.card:hover{border-color:var(--border-gold)}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600;margin-bottom:10px;color:var(--text)}
+.card-text{color:var(--text-soft);font-size:1.25rem;line-height:1.7}
+
+.quote{border-left:3px solid var(--gold);padding:22px 26px;margin:28px 0;background:var(--gold-dim);border-radius:0 var(--r) var(--r) 0}
+.quote p{color:var(--text);margin:0;font-style:italic;font-size:1.33rem}
+.quote .attr{font-style:normal;font-size:1.17rem;color:var(--text-dim);margin-top:8px;display:block}
+
+.warn{border-left:3px solid var(--red);padding:22px 26px;margin:28px 0;background:var(--red-dim);border-radius:0 var(--r) var(--r) 0}
+.warn p{color:var(--text);margin:0;font-size:1.55rem}
+.warn .warn-label{font-family:'Fira Code',monospace;font-size:17px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px;display:block}
+
+.green-block{border-left:3px solid var(--green);padding:22px 26px;margin:28px 0;background:var(--green-dim);border-radius:0 var(--r) var(--r) 0}
+.green-block p{color:var(--text);margin:0;font-size:1.55rem}
+.green-block .green-label{font-family:'Fira Code',monospace;font-size:17px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:6px;display:block}
+
+.blue-block{border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0;background:var(--blue-dim);border-radius:0 var(--r) var(--r) 0}
+.blue-block p{color:var(--text);margin:0;font-size:1.55rem}
+.blue-block .blue-label{font-family:'Fira Code',monospace;font-size:17px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:6px;display:block}
+
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:1.25rem}
+th{text-align:left;padding:13px 15px;font-family:'Fira Code',monospace;font-size:17px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--border-gold);font-weight:500}
+td{padding:13px 15px;border-bottom:1px solid var(--border);color:var(--text-soft);vertical-align:top;font-size:1.25rem}
+tr:last-child td{border-bottom:none}
+
+.pkg{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:36px;margin-bottom:20px;position:relative;overflow:hidden}
+.pkg::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);opacity:.5}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:700;margin-bottom:4px}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:2.45rem;font-weight:700;color:var(--gold);margin-bottom:6px}
+.pkg-price span{font-size:1.25rem;color:var(--text-dim);font-family:'Nunito Sans',sans-serif;font-weight:400}
+.pkg-for{font-size:1.2rem;color:var(--text-dim);margin-bottom:18px;font-style:italic}
+.pkg-list{list-style:none;padding:0;margin:0 0 20px}
+.pkg-list li{padding:7px 0 7px 22px;position:relative;font-size:1.25rem;color:var(--text-soft);line-height:1.6}
+.pkg-list li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700;font-size:1.15rem}
+.pkg-note{font-size:1.17rem;color:var(--text-dim);padding-top:14px;border-top:1px solid var(--border)}
+
+.scenario{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:26px 30px;margin-bottom:14px}
+.scenario-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--text);margin-bottom:8px}
+.scenario-query{font-family:'Fira Code',monospace;font-size:1.13rem;color:var(--gold);background:var(--gold-dim);padding:10px 16px;border-radius:6px;margin:10px 0;display:inline-block;max-width:100%}
+.scenario-result{font-size:1.2rem;color:var(--text-dim);margin-top:8px}
+
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.comp-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:26px}
+.comp-card.old{border-top:3px solid var(--red)}
+.comp-card.new{border-top:3px solid var(--green)}
+.comp-card .comp-label{font-family:'Fira Code',monospace;font-size:17px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;display:block}
+.comp-card.old .comp-label{color:var(--red)}
+.comp-card.new .comp-label{color:var(--green)}
+.comp-card p{font-size:1.23rem;color:var(--text-soft);margin-bottom:8px;line-height:1.6}
+.comp-card p:last-child{margin-bottom:0}
+
+.cta-block{text-align:center;padding:52px 36px;background:var(--bg-card);border:1px solid var(--border-gold);border-radius:var(--r);margin-top:40px}
+.cta-block h3{margin-top:0;font-size:1.75rem;color:var(--text)}
+.cta-block p{color:var(--text-soft);max-width:580px;margin:14px auto;font-size:1.55rem}
+
+.footer{text-align:center;padding:60px 24px;border-top:1px solid var(--border)}
+.footer-name{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;color:var(--gold);margin-bottom:6px}
+.footer-text{font-size:1.17rem;color:var(--text-dim)}
+
+.steps-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:24px 0}
+.step-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:26px;text-align:center}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:2.85rem;font-weight:700;color:var(--gold);opacity:.4;margin-bottom:8px}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--text);margin-bottom:8px}
+.step-desc{font-size:1.17rem;color:var(--text-dim);line-height:1.6}
+
+/* Chat mockup */
+.chat-mock{background:#1a1a2e;border-radius:var(--r);padding:20px;margin:24px 0;max-width:520px}
+.chat-msg{margin-bottom:12px;display:flex;flex-direction:column}
+.chat-msg.user{align-items:flex-end}
+.chat-msg.bot{align-items:flex-start}
+.chat-bubble{padding:12px 16px;border-radius:12px;max-width:85%;font-size:1.2rem;line-height:1.6}
+.chat-msg.user .chat-bubble{background:var(--gold-dim);color:var(--text);border-bottom-right-radius:4px}
+.chat-msg.bot .chat-bubble{background:var(--bg-card);color:var(--text-soft);border:1px solid var(--border);border-bottom-left-radius:4px}
+.chat-sender{font-family:'Fira Code',monospace;font-size:15px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;padding:0 4px}
+.chat-msg.user .chat-sender{color:var(--gold)}
+.chat-msg.bot .chat-sender{color:var(--blue)}
+
+@media(max-width:640px){
+  .slide{padding:56px 20px}
+  .comp-grid,.steps-grid{grid-template-columns:1fr}
+  .hero-meta{flex-direction:column;gap:10px}
+  .pkg{padding:24px}
+  .chat-mock{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- ========== SLIDE 1: HERO ========== -->
+<section class="slide hero">
+  <div class="slide-inner">
+    <div class="badge">Коммерческое предложение</div>
+    <h1>Ваша стратегия ,<br>в одном <span class="accent">Telegram-чате</span></h1>
+    <p class="hero-sub">25 документов, 81 хук, 49 формулировок, 10 готовых текстов. Всё доступно через один вопрос. Не ищите по файлам, спросите AI-помощника.</p>
+    <div class="hero-meta">
+      <span>ИП Ильясова Т.А.</span>
+      <span>для Владислава / LVL Market</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 2: МОСТ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Отправная точка</span>
+    <h2>Владислав, у Вас на руках полноценная маркетинговая система. Осталось начать ей пользоваться, каждый день.</h2>
+
+    <p>Мы вместе прошли 9 этапов глубинной проработки. Вы получили: позиционирование «Метод Открытого Расчёта», 81 заголовок для Авито, 10 готовых текстов, скрипты продаж, email-воронку на 10 писем, систему реактивации базы на 10 000 контактов и пошаговый план внедрения.</p>
+
+    <p>Это мощный арсенал. Но есть реальность:</p>
+
+    <p>У Вас <strong>20 лидов в день</strong>. Вы работаете <strong>8-10 часов</strong>. Когда клиент на проводе говорит <strong>«дорого»</strong>, а нужный скрипт на странице 14 документа BIG REASON, искать некогда. Когда подрядчику по Авито нужно ТЗ, перечитывать BIG ATTENTION некогда. Когда нужно написать сообщение клиенту из базы, собирать формулировки из трёх документов некогда.</p>
+
+    <div class="quote">
+      <p>«Боюсь самого себя, что загорюсь и брошу. С сайтом так было: 18 месяцев платил за SEO, не проверял, не анализировал, отдал на откуп подрядчику и потерял полтора миллиона. Моя главная уязвимость не в системе, а в дисциплине.»</p>
+      <span class="attr">Владислав, собственник LVL Market</span>
+    </div>
+
+    <p><strong>AI-помощник решает именно эту проблему.</strong> Не создаёт новую стратегию, а делает существующую доступной в одно касание. 25 файлов превращаются в одного собеседника в Telegram.</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 3: ЦЕНА БЕЗДЕЙСТВИЯ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Конкретные цифры</span>
+    <h2>Сколько стоит «знать, но не применять», на цифрах Вашего бизнеса</h2>
+
+    <table>
+      <thead><tr><th>Ситуация</th><th>Потеря</th></tr></thead>
+      <tbody>
+        <tr><td>Клиент сказал «дорого», Вы не вспомнили кейс «60 тыс. → 300 тыс.» и потеряли сделку</td><td><strong>135 000 руб.</strong></td></tr>
+        <tr><td>Не предложили апселл «комплект кровли», потому что забыли формулировку</td><td><strong>90 000 руб./мес</strong></td></tr>
+        <tr><td>Подрядчик написал объявление «как обычно», без хуков из BIG ATTENTION</td><td><strong>6-8 потерянных сделок/мес</strong></td></tr>
+        <tr><td>10 000 контактов в CRM лежат мёртвым грузом, нет шаблонов под рукой</td><td><strong>4,3 млн руб.</strong> (консервативно)</td></tr>
+        <tr><td>Зимой 5 месяцев простоя, нет системной подготовки к сезону</td><td><strong>0-100 тыс./мес</strong> вместо 300+ тыс.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="warn">
+      <span class="warn-label">Главный риск</span>
+      <p>Инвестиция в стратегию превращается в ещё одну папку. Как сайт за 300 000. Как SEO за 900 000. Не потому что стратегия плохая. А потому что между «знать» и «применять каждый день» лежит пропасть.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 4: РЕШЕНИЕ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Решение</span>
+    <h2>AI-помощник: Ваш маркетолог в&nbsp;Telegram, 24/7</h2>
+
+    <p>Представьте: маркетолог, который два месяца изучал Ваш бизнес, написал стратегию, скрипты, тексты, не уехал. Он остался у Вас в телефоне. И отвечает за 30 секунд вместо 30 минут.</p>
+
+    <h3>Как это выглядит в реальности</h3>
+    
+
+    
+
+    <p>Бот отвечает не «из головы», а строго из Ваших 25 документов. Не фантазирует, не выдумывает формулировки. Использует именно те хуки, скрипты и аргументы, которые мы вместе разработали.</p>
+
+    <div class="green-block">
+      <span class="green-label">Голосовые сообщения</span>
+      <p>AI-помощник понимает аудиосообщения. Не нужно печатать, просто скажите голосом: «Клиент спрашивает, чем LVL лучше двутавра, что ответить?» Бот распознает речь и ответит текстом. Удобно, когда руки заняты или Вы за рулём по дороге на склад.</p>
+    </div>
+
+    <h3>Чем это отличается от ChatGPT</h3>
+    <div class="comp-grid">
+      <div class="comp-card old">
+        <span class="comp-label">Обычный ChatGPT</span>
+        <p>Не знает, что такое «Метод Открытого Расчёта»</p>
+        <p>Каждый раз нужно заново объяснять контекст</p>
+        <p>Придумывает «красивые» формулировки, которых нет в стратегии</p>
+        <p>Забывает половину документов к третьему вопросу</p>
+      </div>
+      <div class="comp-card new">
+        <span class="comp-label">Ваш AI-помощник</span>
+        <p>Знает все 5 брендированных характеристик, 81 хук, 10 текстов</p>
+        <p>Контекст загружен навсегда, все документы в базе</p>
+        <p>Отвечает строго на основе Вашей стратегии</p>
+        <p>Помнит всё, от пятислойного анализа до плана внедрения</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 5: СЦЕНАРИИ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Сценарии использования</span>
+    <h2>8 ситуаций из Вашего рабочего дня</h2>
+
+    <div class="scenario">
+      <div class="scenario-title">1. Клиент на проводе говорит «дорого», нужен аргумент прямо сейчас</div>
+      <div class="scenario-query">«Клиент говорит дорого, сравнивает с доской. Дай аргумент»</div>
+      <p class="card-text">Помощник за 10 секунд выдаёт кейс «60 тыс. → 300 тыс.» из BIG DOMINO в формате, который можно проговорить по телефону. <strong>Результат:</strong> не потерянная сделка на 135 000 руб.</p>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-title">2. Клиент спрашивает: «Чем LVL отличается от деревянного двутавра?»</div>
+      <div class="scenario-query">«Сравни LVL и деревянный двутавр для перекрытия 6 м»</div>
+      <p class="card-text">Помощник выдаёт сравнение из JTBD-анализа: OSB портится от влаги, двутавр не подходит для конька, ограничения по пролёту. Вы отвечаете экспертно, клиент остаётся.</p>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-title">3. Нужно написать 50 сообщений клиентам из базы</div>
+      <div class="scenario-query">«Напиши сообщение для реактивации. Клиент получил расчёт на пролёт 7 м, не купил. Сейчас апрель, сезон начинается»</div>
+      <p class="card-text">Помощник генерирует персонализированный текст по шаблонам из системы реактивации. <strong>Результат:</strong> 30 минут вместо 3 часов на 50 писем.</p>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-title">4. Подрядчику нужно ТЗ на новые объявления</div>
+      <div class="scenario-query">«Сформулируй ТЗ для подрядчика по Авито: 3 объявления под запросы людей, которые не знают про LVL»</div>
+      <p class="card-text">Готовое ТЗ с заголовками из «Элитного Отряда» BIG ATTENTION, описаниями и критериями приёмки. <strong>Результат:</strong> подрядчик работает по стратегии, а не «как обычно».</p>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-title">5. Нужно предложить апселл, но забыли формулировку</div>
+      <div class="scenario-query">«Как предложить клиенту комплект кровли вместо одного конька?»</div>
+      <p class="card-text">Помощник выдаёт скрипт из BIG REASON: «Кстати, стропила и мауэрлат тоже нужны из LVL? Могу посчитать комплект, выйдет выгоднее, чем по частям.» <strong>Результат:</strong> +90 000 руб./мес к прибыли.</p>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-title">6. Пришёл запрос на ангар, что у нас есть по B2B?</div>
+      <div class="scenario-query">«Запрос на ангар для коровника. Что у нас есть по агрессивным средам?»</div>
+      <p class="card-text">Помощник выдаёт блоки из стратегии B2B: LVL не ржавеет, не реагирует на аммиак, срок службы в разы выше металла. <strong>Результат:</strong> не упущенная сделка на 500 000+ руб.</p>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-title">7. Нужен контент для соцсетей, с чего начать?</div>
+      <div class="scenario-query">«Дай план публикаций на первую неделю для Telegram, VK, YouTube Shorts»</div>
+      <p class="card-text">Помощник выстраивает последовательность из 10 «кирпичей» BIG BRICKS с привязкой к дням и адаптацией под формат площадки: длинный пост для Telegram, короткий для VK, сценарий на 60 секунд для YouTube Shorts или Reels. <strong>Результат:</strong> 30 минут вместо 6 часов. На любую площадку.</p>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-title">8. Зима, сезон мёртвый, чем заняться?</div>
+      <div class="scenario-query">«Что из плана внедрения я могу сделать зимой, пока лидов мало?»</div>
+      <p class="card-text">Помощник выдаёт приоритеты из BIG PICTURE: реактивация базы, упаковка кейсов, выход на проектировщиков, подготовка видео. <strong>Результат:</strong> зима из простоя превращается в подготовку к сезону.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 6: ЦЕННОСТЬ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Финансовый эффект</span>
+    <h2>Как это влияет на деньги</h2>
+
+    <table>
+      <thead><tr><th>Эффект</th><th>Конкретно</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Экономия времени</strong></td><td>Поиск формулировки в 25 документах: 20-40 мин. Через бот: 30 сек. При 5 обращениях/нед = <strong>8-12 часов экономии/мес</strong></td></tr>
+        <tr><td><strong>Спасённые сделки</strong></td><td>Одна не потерянная сделка = <strong>135 000 руб.</strong> = окупает помощника на 2+ года</td></tr>
+        <tr><td><strong>Апселлы</strong></td><td>Формулировка «комплект кровли» всегда под рукой = <strong>+90 000 руб./мес</strong></td></tr>
+        <tr><td><strong>Реактивация базы</strong></td><td>Готовые шаблоны за секунды = запуск реактивации 10 000 контактов = <strong>до 4,3 млн</strong></td></tr>
+        <tr><td><strong>Зимняя подготовка</strong></td><td>5 месяцев простоя превращаются в 5 месяцев системной подготовки. Зимний доход <strong>200-350 тыс.</strong> вместо нуля</td></tr>
+      </tbody>
+    </table>
+
+    <div class="green-block">
+      <span class="green-label">Формула окупаемости</span>
+      <p>Одна спасённая сделка (135 000 руб.) окупает разработку (58 000 руб.) и 9 месяцев подписки. Одна. За всё время использования. Всё остальное, чистый плюс.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 7: ФОРМАТ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Как это будет сделано</span>
+    <h2>Три этапа, от документов к рабочему помощнику</h2>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">Подготовка базы знаний</div>
+        <p class="step-desc">Все 25+ документов обрабатываются и загружаются в систему. Каждый разбивается на смысловые блоки для точного поиска.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">Настройка и тестирование</div>
+        <p class="step-desc">Инструкции, тон, ограничения. Тестирование на 30+ типовых вопросах. Корректировка до стабильного качества.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">Запуск и онбординг</div>
+        <p class="step-desc">Ссылка на бот, шпаргалка «10 вопросов для старта», 15-минутный созвон. Бот работает.</p>
+      </div>
+    </div>
+
+    <p><strong>Сроки:</strong> 5–7 рабочих дней. Первый рабочий прототип, через 3 дня (сможете протестировать). Финальная версия, через 5–7 дней.</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 8: СТОИМОСТЬ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Стоимость и условия</span>
+    <h2>Разработка и обслуживание сервиса</h2>
+
+    <div class="pkg">
+      <div class="pkg-name">Разработка AI-помощника</div>
+      <div class="pkg-price">58 000 <span>руб., разово</span></div>
+      <p class="pkg-for">Единоразовый платёж. Вы получаете готовый, настроенный, протестированный Telegram-бот с Вашей базой знаний.</p>
+      <ul class="pkg-list">
+        <li>Обработка и загрузка всех 25+ документов в базу знаний</li>
+        <li>Настройка бота (инструкции, тон, роль, формат ответов, ограничения)</li>
+        <li>Тестирование на 30+ типовых запросах с корректировкой</li>
+        <li>Онбординг: шпаргалка «10 вопросов для старта» + созвон 15 мин</li>
+        <li>1 неделя поддержки после запуска (корректировка по Вашим замечаниям)</li>
+        <li>Обновление базы знаний, 1 раз бесплатно</li>
+      </ul>
+    </div>
+
+    <div class="pkg">
+      <div class="pkg-name">Ежемесячное обслуживание сервиса</div>
+      <div class="pkg-price">7 000 <span>руб./мес</span></div>
+      <p class="pkg-for">Это стоимость инфраструктуры, на которой работает бот. Оплачивается напрямую сервисам.</p>
+      <ul class="pkg-list">
+        <li><strong>Сервер (VPS)</strong>, ~2 000 руб./мес. Обеспечивает работу бота 24/7</li>
+        <li><strong>API AI-модели</strong>, ~3 500 руб./мес. Оплата за обработку Ваших запросов</li>
+        <li><strong>Векторная база данных</strong>, ~1 000 руб./мес. Хранение и поиск по Вашим документам</li>
+        <li><strong>Резерв</strong>, ~500 руб./мес. На пиковые нагрузки (если в сезон будете пользоваться чаще)</li>
+      </ul>
+      <p class="pkg-note"><strong>Полная прозрачность:</strong> все аккаунты настраиваются на Ваше имя. Вы видите, за что платите. Если решите остановить, отключаете сервер, и всё. Никаких скрытых платежей, никакой привязки ко мне. Это Ваш инструмент.</p>
+    </div>
+
+    <h3>Сравнение с альтернативами</h3>
+    <table>
+      <thead><tr><th>Вариант</th><th>Стоимость/год</th><th>Что получаете</th></tr></thead>
+      <tbody>
+        <tr><td>AI-помощник</td><td><strong>142 000 руб.</strong></td><td>Вся стратегия в одном чате, 24/7, навсегда</td></tr>
+        <tr><td>Маркетолог на аутсорсе</td><td>480 000 - 960 000 руб.</td><td>Живой человек, но не знает Вашу стратегию</td></tr>
+        <tr><td>Кураторство «Навигатор»</td><td>1 200 000 руб.</td><td>Полное сопровождение (другой уровень задач)</td></tr>
+        <tr><td>Ничего не делать</td><td>0 руб.</td><td>Стратегия лежит на полке</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ========== SLIDE 9: ГАРАНТИЯ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Снятие риска</span>
+    <h2>Как не повторить историю с SEO</h2>
+
+    <p>Вы потратили 1,35 млн на подрядчиков без результата. Любое новое предложение Вы оцениваете через эту призму. Поэтому, три конкретных отличия:</p>
+
+    <div class="card">
+      <div class="card-title">Результат виден в первый день</div>
+      <p class="card-text">SEO: Вы не могли проверить, работает ли. 18 месяцев без результата. С ботом: задаёте вопрос, через 30 секунд видите ответ. Если ответ хороший, значит работает. Если нет, пишете мне, я корректирую. Цикл обратной связи: минуты, а не месяцы.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Гарантия качества</div>
+      <p class="card-text"><strong>Если в первые 14 дней бот не отвечает на Ваши вопросы корректно, я дорабатываю бесплатно, пока Вы не скажете «работает».</strong> Если после всех доработок результат не устраивает, возвращаю 100% оплаты за разработку. Без вопросов.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Вы владеете инструментом, а не арендуете услугу</div>
+      <p class="card-text">SEO-шник ушёл, результат исчез. Бот это Ваш инструмент. Аккаунты на Ваше имя, документы в Вашей базе, сервер под Вашим контролем. Если мы прекратим сотрудничество, бот продолжит работать.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 10: БЕЗОПАСНОСТЬ ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Безопасность данных</span>
+    <h2>Ваша стратегия только Ваша</h2>
+
+    <p>25 документов, это Ваше конкурентное преимущество. «Метод Открытого Расчёта», 81 хук, скрипты продаж. Ничего из этого не должно попасть к конкурентам. Вот как мы это обеспечиваем:</p>
+
+    <div class="card">
+      <p class="card-text"><strong>Изолированная база данных.</strong> Ваши документы хранятся в отдельном контейнере, к которому нет доступа ни у кого, кроме Вашего бота.</p>
+    </div>
+    <div class="card">
+      <p class="card-text"><strong>Доступ только через Ваш Telegram.</strong> Бот привязан к Вашему аккаунту. Никто другой не может задать ему вопрос и получить ответ из Вашей стратегии.</p>
+    </div>
+    <div class="card">
+      <p class="card-text"><strong>Данные не используются для обучения AI.</strong> Ваши документы не передаются разработчикам моделей и не попадают в общие базы данных.</p>
+    </div>
+    <div class="card">
+      <p class="card-text"><strong>При необходимости, NDA.</strong> Если нужно формальное соглашение о конфиденциальности, подпишем.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 11: ПРОДУКТОВАЯ ЛИНЕЙКА ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Место в продуктовой линейке</span>
+    <h2>Три продукта, одна логика</h2>
+
+    <p>Стратегия это <strong>проект дома</strong>. AI-помощник это <strong>навигатор на стройке</strong>. Кураторство это <strong>прораб рядом</strong>.</p>
+
+    <table>
+      <thead><tr><th>Продукт</th><th>Для чего</th><th>Стоимость</th></tr></thead>
+      <tbody>
+        <tr><td>Стратегия (финальный отчёт)</td><td>Понять, что делать</td><td>50 000 руб. ✅ Сделано</td></tr>
+        <tr><td><strong>AI-помощник ← Вы здесь</strong></td><td>Применять стратегию каждый день</td><td>58 000 + 7 000/мес</td></tr>
+        <tr><td>Кураторство</td><td>Делегировать координацию внедрения</td><td>100 000 - 200 000/мес</td></tr>
+      </tbody>
+    </table>
+
+    <div class="blue-block">
+      <span class="blue-label">Как это связано</span>
+      <p>AI-помощник это мостик. Вы начинаете внедрять стратегию самостоятельно, с помощником под рукой. Видите результат. Понимаете ценность системной работы. Если захотите, переходите на кураторство. Или продолжаете с помощником, это тоже правильный путь.</p>
+    </div>
+
+    <h3>Что помощник делает, и чего не делает</h3>
+    <div class="comp-grid">
+      <div class="comp-card new">
+        <span class="comp-label">Делает</span>
+        <p>Находит формулировку за 30 секунд</p>
+        <p>Пишет объявления на основе стратегии</p>
+        <p>Подсказывает ответ на возражение</p>
+        <p>Формулирует ТЗ для подрядчиков</p>
+        <p>Генерирует письма для реактивации</p>
+        <p>Напоминает план внедрения</p>
+      </div>
+      <div class="comp-card old">
+        <span class="comp-label">Не делает</span>
+        <p>Не проверяет работу подрядчиков</p>
+        <p>Не проводит стратегические сессии</p>
+        <p>Не создаёт новую стратегию</p>
+        <p>Не адаптирует систему под изменения рынка</p>
+        <p>Не заменяет живого куратора</p>
+        <p>Не гарантирует внедрение (это Ваша зона)</p>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--text-dim);font-size:1.2rem;margin-top:12px"><strong>Навигатор покажет дорогу. Ехать Вам.</strong></p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 12: CTA ========== -->
+<section class="slide">
+  <div class="slide-inner">
+    <span class="label">Следующий шаг</span>
+    <h2>Стратегия готова. Помощник, следующий шаг.</h2>
+
+    <p>Владислав, 25 документов у Вас на руках. Вопрос: будут ли они работать каждый день или лягут в папку?</p>
+
+    <p>AI-помощник, это инструмент, который превращает стратегию из набора файлов в рабочий инструмент. Через 5-7 дней после старта Вы сможете задать ему любой вопрос и получить ответ из собственной стратегии за 30 секунд.</p>
+
+    <div class="cta-block">
+      <h3>Одно действие, чтобы начать</h3>
+      <p>Напишите мне в Telegram или позвоните. Обсудим детали, согласуем сроки и запустим разработку. Как только бот будет готов, Вы получите помощника, который знает всю Вашу стратегию наизусть.</p>
+      <p>Никаких долгосрочных обязательств. Не устраивает результат после запуска, дорабатываю до тех пор, пока Вы не скажете «работает».</p>
+      <p style="margin-top:24px;color:var(--text-dim);font-size:1.2rem">Каждая неделя без помощника: формулировки забываются, объявления пишутся «как раньше», подрядчики работают без ТЗ, база лежит мёртвым грузом. Инструменты готовы. Осталось начать ими пользоваться.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-name">Дмитрий Ильясов</div>
+  <div class="footer-text">ИП Ильясова Т.А. | Разработка AI-инструментов для маркетинга</div>
+</footer>
+
+</body>
+</html>
